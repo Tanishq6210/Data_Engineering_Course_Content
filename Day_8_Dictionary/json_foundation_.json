@@ -1,0 +1,12 @@
+{
+    "1": {
+        "name": "Tanishq",
+        "age": 25,
+        "city": "New York",
+        "marks": {
+            "math": 85,
+            "science": 90,
+            "english": 88
+        }
+    }
+}
