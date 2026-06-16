@@ -1,0 +1,29 @@
+{
+    "employees": [
+        {
+            "id": "1",
+            "name": "Rahul",
+            "department": "IT",
+            "salary": 50000
+        },
+        {
+            "id": "2",
+            "name": "Amit",
+            "department": "HR",
+            "salary": 0
+        },
+        {
+            "id": "3",
+            "name": "Neha",
+            "department": "IT",
+            "salary": 70000
+        },
+        {
+            "id": "4",
+            "name": "Priya",
+            "department": "Finance",
+            "salary": 0
+        }
+    ],
+    "average_salary": 30000.0
+}
