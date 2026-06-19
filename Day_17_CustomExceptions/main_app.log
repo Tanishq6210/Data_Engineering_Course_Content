@@ -1,0 +1,27 @@
+2026-06-19 21:32:47 - INFO - [main.py:13] - Application Started!
+2026-06-19 21:32:47 - INFO - [main.py:40] - Doing divide by 0 operation
+2026-06-19 21:32:49 - INFO - [main.py:50] - Completed divide by 0 operation
+2026-06-19 21:32:49 - INFO - [main.py:55] - Application ended!
+2026-06-19 21:32:53 - INFO - [main.py:13] - Application Started!
+2026-06-19 21:32:53 - INFO - [main.py:40] - Doing divide by 0 operation
+2026-06-19 21:32:58 - INFO - [main.py:13] - Application Started!
+2026-06-19 21:32:58 - INFO - [main.py:40] - Doing divide by 0 operation
+2026-06-19 21:33:00 - INFO - [main.py:50] - Completed divide by 0 operation
+2026-06-19 21:33:00 - INFO - [main.py:55] - Application ended!
+2026-06-19 21:33:02 - INFO - [main.py:13] - Application Started!
+2026-06-19 21:33:02 - INFO - [main.py:40] - Doing divide by 0 operation
+2026-06-19 21:33:04 - INFO - [main.py:50] - Completed divide by 0 operation
+2026-06-19 21:33:04 - INFO - [main.py:55] - Application ended!
+2026-06-19 21:33:06 - INFO - [main.py:13] - Application Started!
+2026-06-19 21:33:06 - INFO - [main.py:40] - Doing divide by 0 operation
+2026-06-19 21:33:07 - ERROR - [main.py:47] - Division by 0 occuered! 0
+2026-06-19 21:33:07 - INFO - [main.py:50] - Completed divide by 0 operation
+2026-06-19 21:33:07 - INFO - [main.py:55] - Application ended!
+2026-06-19 21:33:11 - INFO - [main.py:13] - Application Started!
+2026-06-19 21:33:11 - INFO - [main.py:40] - Doing divide by 0 operation
+2026-06-19 21:33:12 - INFO - [main.py:50] - Completed divide by 0 operation
+2026-06-19 21:33:12 - INFO - [main.py:55] - Application ended!
+2026-06-19 21:33:23 - INFO - [main.py:13] - Application Started!
+2026-06-19 21:33:23 - INFO - [main.py:40] - Doing divide by 0 operation
+2026-06-19 21:33:30 - INFO - [main.py:50] - Completed divide by 0 operation
+2026-06-19 21:33:30 - INFO - [main.py:55] - Application ended!

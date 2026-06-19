@@ -1,0 +1,8 @@
+2026-06-19 21:41:22 - INFO - [main.py:15] - Application Started!
+2026-06-19 21:41:22 - INFO - [main.py:42] - Doing divide by 0 operation
+2026-06-19 21:41:24 - INFO - [main.py:52] - Completed divide by 0 operation
+2026-06-19 21:41:24 - INFO - [main.py:57] - Application ended!
+2026-06-19 21:45:46 - WARNING - [main.py:15] - Application Started!
+2026-06-19 21:45:46 - INFO - [main.py:42] - Doing divide by 0 operation
+2026-06-19 21:45:49 - INFO - [main.py:52] - Completed divide by 0 operation
+2026-06-19 21:45:49 - INFO - [main.py:57] - Application ended!

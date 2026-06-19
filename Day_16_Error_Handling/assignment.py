@@ -29,7 +29,3 @@
 # Handle all errors using try-except.
 # Print transaction success message if valid.
 # Use else and finally blocks.
-
-# id,name,marks
-# 1,Rahul,85
-# 2,Amit,90
