@@ -1,7 +1,5 @@
 # Class Assignment
-
 # Create an Employee class.
-
 # Requirements:
 
 # Attributes:
@@ -24,6 +22,13 @@
 # Salary: 50000
 
 # Annual Salary: 600000
+
+
+
+
+
+
+
 
 
 # Homework Assignment
