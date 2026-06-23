@@ -134,6 +134,11 @@ mohit_account.set_account_balance(1000)
 print(mohit_account.get_account_balance())
 # print(mohit_account.account_balance)
 
+list1 = [1, 3, 2]
+list2 = [3, 1, 2]
+
+print(list1.sort())
+print(list2.sort())
 
 class A:
     def __init__(self, name):
