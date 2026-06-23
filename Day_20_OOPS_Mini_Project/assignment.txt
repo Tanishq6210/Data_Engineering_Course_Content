@@ -1,0 +1,15 @@
+Library Management System
+
+The system should allow librarians to:
+
+Add a book
+Remove a book
+Search for a book
+Display all books
+Issue a book to a student
+Return a book
+Display all issued books
+Count total books
+Prevent duplicate book IDs
+Handle invalid operations using exceptions
+Log important actions using a decorator

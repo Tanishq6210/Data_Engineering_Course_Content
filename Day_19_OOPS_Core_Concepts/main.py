@@ -21,10 +21,15 @@ class Animal:
 
 # Child class
 class Dog(Animal):
+    
     def sound(self):
+        self.sound()
         print("Bark!!")
 
 class LabraDog(Dog):
+    def sound(self):
+        self.sound()
+        print("Labra Barks!")
     pass
 
 class Cat(Animal):
@@ -143,3 +148,37 @@ print(list2.sort())
 class A:
     def __init__(self, name):
         self._name = name
+
+
+# super() -> This function is used to call the parent class properties or methods from the chil class
+class Student:
+    def __init__(self, roll_no, name):
+        self.roll_no = roll_no #public attribute -> Visible everywhere
+        self._name = name #protected attribute -> Parent and derived classes
+        self.__address = "Gurugram" #private attribute -> Only in the class where it is defined
+
+    
+    def displayStudent(self):
+        print("Displaying Student!")
+
+class BtechStudent(Student):
+    def __init__(self, roll_no, name):
+        super().__init__(roll_no, name)
+
+
+    def display_student(self):
+        super().displayStudent()
+        print("Displaying Btech Student!")
+
+    def display_student_name(self):
+        print(f"Name: {self._name}")
+    
+    def display_student_address(self):
+        print(f"Address: {self.__address}")
+
+
+std1 = BtechStudent(20, "Arul Bansal")
+std1.display_student_name()
+std1.display_student_address()
+
+# print(std1._name)
