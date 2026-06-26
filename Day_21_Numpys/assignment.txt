@@ -1,0 +1,52 @@
+Class Assignment
+Student Performance Analyzer
+
+A teacher has recorded the marks of 8 students. Create a array of random 8 marks
+
+Perform the following tasks:
+Print the marks array.
+Find the shape, size, number of dimensions (ndim), and data type (dtype) of the array.
+Find:
+Total marks
+Average marks
+Highest marks
+Lowest marks
+Add 5 grace marks to every student using NumPy (without using loops).
+Increase every student's marks by 10%.
+Create:
+An array of 8 zeros using np.zeros().
+An array of 8 ones using np.ones().
+An array containing roll numbers from 1 to 8 using np.arange().
+
+
+
+
+Home Assignment
+Supermarket Sales Analyzer
+A supermarket recorded its sales (₹) for 10 consecutive days.
+
+import numpy as np
+sales = np.array([1250, 1380, 1190, 1500, 1425, 1600, 1550, 1490, 1700, 1650])
+
+Perform the following tasks:
+
+Print the sales array.
+Display the shape, size, number of dimensions, and data type of the array.
+Find:
+Total sales
+Average daily sales
+Highest sales
+Lowest sales
+Increase every day's sales by ₹100 using broadcasting.
+Calculate the sales after a 10% increase.
+Create:
+An array of 10 zeros representing returned products.
+An array of 10 ones representing store status.
+An array representing the day numbers (1 to 10) using np.arange().
+
+Compare the execution time of multiplying one million numbers by 2 using:
+
+A Python list with a for loop.
+A NumPy array.
+
+Print the execution time of both and write 2–3 lines explaining which one is faster and why.
