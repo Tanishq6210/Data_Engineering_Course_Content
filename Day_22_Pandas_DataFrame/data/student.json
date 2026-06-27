@@ -1,0 +1,26 @@
+[
+    {
+        "Roll": 101,
+        "Name": "Rahul",
+        "Age": 21,
+        "Marks": 88
+    },
+    {
+        "Roll": 102,
+        "Name": "Neha",
+        "Age": 22,
+        "Marks": 91
+    },
+    {
+        "Roll": 103,
+        "Name": "Amit",
+        "Age": 20,
+        "Marks": 75
+    },
+    {
+        "Roll": 104,
+        "Name": "Priya",
+        "Age": 21,
+        "Marks": 84
+    }
+]

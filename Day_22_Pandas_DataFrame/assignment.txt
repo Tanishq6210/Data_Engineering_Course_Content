@@ -1,0 +1,5 @@
+1. Create a Series containing the names of five cities and use custom indexes.
+2. Read the data from a excel having the values, employee_id, salary, few more attributes
+3. Display the first three rows using head(3).
+4. Use info() to identify the data types of each column.
+5. Use describe() to summarize the numeric columns and explain what each statistic represents.
