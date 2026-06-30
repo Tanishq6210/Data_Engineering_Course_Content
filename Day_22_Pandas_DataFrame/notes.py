@@ -96,3 +96,15 @@ df.agg(["mean", "std", data_range])
 
 
 df.describe(percentiles = [0.10, 0.50, 0.80])
+
+
+
+import pandas as pd
+
+data = {
+    "Name": ["Alice", "Bob", "Charlie"],
+    "Age": [25, 30, 28]
+}
+
+df = pd.DataFrame(data, index=["A", "B", "C"])
+print(df)
