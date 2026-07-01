@@ -1,0 +1,42 @@
+Homework
+Employee Dataset Cleaning Challenge
+
+employees = {
+    " Employee Name ": ["amit", "NEHA ", "Rohan", None, "amit", "Simran"],
+    "Age": [25, np.nan, 30, 28, 25, np.nan],
+    "Salary": [50000, 65000, np.nan, 45000, 50000, 80000],
+    "Department": [" it", "HR ", "Finance", "IT", " it", "Hr"],
+    "City": ["Delhi ", " mumbai", "DELHI", "Pune", "Delhi ", " Bangalore"]
+}
+
+df = pd.DataFrame(employees)
+print(df)
+
+
+Questions
+Identify all missing values.
+Count the missing values in each column.
+Replace missing values in:
+Age using the mean
+Salary using the median
+Remove duplicate rows.
+Rename " Employee Name " to "employee_name".
+Standardize all column names by:
+Removing extra spaces
+Converting to lowercase
+Replacing spaces with underscores
+Standardize the employee_name column:
+Remove extra spaces
+Convert to Title Case
+Standardize the department column:
+Remove extra spaces
+Convert to Uppercase
+Standardize the city column:
+Remove extra spaces
+Convert to Title Case
+Convert the Age column to integer.
+Create a new column called salary_category:
+Salary ≥ 60000 → "High"
+Salary < 60000 → "Low"
+Display the final cleaned dataset.
+Display the data types of each column.

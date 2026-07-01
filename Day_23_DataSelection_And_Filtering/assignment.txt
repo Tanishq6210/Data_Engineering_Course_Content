@@ -1,0 +1,31 @@
+
+import pandas as pd
+
+students = pd.DataFrame({
+    "Student_ID":[1,2,3,4,5,6,7,8],
+    "Name":["Aman","Riya","Karan","Neha","Ankit","Priya","Rohan","Simran"],
+    "Course":["Python","Java","Python","SQL","Java","Python","SQL","Java"],
+    "Age":[21,20,22,23,21,24,22,20],
+    "Marks":[88,76,91,69,82,95,73,85],
+  
+    "City":["Delhi","Mumbai","Delhi","Pune","Delhi","Mumbai","Bangalore","Delhi"]
+})
+
+
+Display only the Name column.
+Display the Name, Course, and Marks columns.
+Display all columns except Student_ID.
+Display the first 5 students using iloc.
+Display rows 2 to 6 using loc.
+Display rows 1 to 4 with only the Name, Marks, and City columns using loc.
+Display students scoring more than 80 marks.
+Display students enrolled in the Python course.
+Display students from Delhi.
+Display students from Delhi who scored more than 85 marks.
+Display students whose Age is greater than 21.
+Display students enrolled in either Java or SQL.
+Display students not enrolled in the Python course.
+Sort the DataFrame by Marks (Highest to Lowest).
+Sort the DataFrame by Course and then by Marks.
+Sort the DataFrame by City and then by Name.
+Create a report containing only Name, Course, Marks, and City for Python students scoring 90 or above, sorted by Marks (Highest to Lowest) and reset the index.
