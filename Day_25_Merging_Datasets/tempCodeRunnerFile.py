@@ -1,0 +1,1 @@
+print(sales.groupby("ProductID")["Sales"].agg(["sum", "mean", "max", "min"]))

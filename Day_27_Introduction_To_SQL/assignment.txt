@@ -1,0 +1,18 @@
+Using SQL, complete the following tasks: 
+1. Design and create a products table by selecting appropriate data types for the columns (product_id, product_name, category, price, stock, supplier_city). 
+2. Insert at least 5 product records of your own choice into the table. 
+3. Display all product details. 
+4. Display only the product name and price.
+5. Rename the product_name column as Item Name.  
+6. Display all unique product categories. 
+7. Find all products costing more than ₹10,000. 
+8. Find products whose stock is less than 30. 
+9. Display products supplied from Delhi. 
+10. Display products that are not in the Electronics category. 
+11. Display products belonging to either the Furniture or Stationery category. 
+12. Find Electronics products costing more than ₹5,000. 
+13. Sort all products by price in ascending order. 
+14. Sort all products by stock in descending order. 
+15. Display the top 5 most expensive products. 
+16. Display the top 3 products with the highest stock. 
+17. Challenge: Display the top 3 most expensive Electronics products, showing Product Name, Category, and Price, rename the price column as Selling Price, sort the results from highest to lowest price, and limit the output to three records.

@@ -1,0 +1,47 @@
+Part A – Table Creation 
+Create a table named movies with the following requirements:
+
+Column	Requirement
+movie_id	Integer, Primary Key
+title	Maximum 150 characters, cannot be NULL
+genre	Maximum 50 characters, cannot be NULL
+duration	Integer, should be greater than 30 minutes
+language	Maximum 30 characters
+release_date	Date
+ticket_price	Decimal number, must be greater than 0
+available	Boolean
+created_at	Timestamp
+imdb_rating	Decimal number between 0 and 10 (inclusive)
+
+Apply all appropriate constraints (PRIMARY KEY, NOT NULL, CHECK).
+
+Part B – Insert Data 
+Insert at least 6 movie records into the table.
+
+Your data should include:
+Different genres
+Different languages
+Both available and unavailable movies
+Different ticket prices
+Different IMDb ratings
+
+
+Part C – Update Records 
+Perform the following updates:
+
+Increase the ticket price of one movie by ₹50.
+Change the availability of one movie from TRUE to FALSE.
+Update the language of one movie.
+
+
+Part D – Delete Records
+Delete one movie whose ticket price is less than ₹200.
+
+Part E – Constraint Testing
+Execute the following operations and observe the database error message.
+
+Insert a movie with an existing movie_id.
+Insert a movie without a title.
+Insert a movie with a negative ticket price.
+Insert a movie with a duration of 20 minutes.
+Insert a movie with an IMDb rating of 12.

@@ -1,0 +1,52 @@
+Project: Retail Data Auditor
+Objective
+
+Files to create
+1. Sales.csv
+OrderID CustomerID  ProductID   Quantity    Sales
+2. Customers.csv
+CustomerID  CustomerName    Region
+3. Products.csv
+ProductID   ProductName Category
+
+Assignment Tasks
+
+Task 1: Load the datasets
+Read all three CSV files into separate DataFrames.
+Display the first 5 rows and inspect the structure using head(), info(), and describe().
+
+Task 2: Clean the data
+Check for missing values using isnull().sum().
+Handle missing values (drop or fill appropriately).
+Remove duplicate rows if any.
+Ensure numeric columns have the correct data type.
+Standardize text columns (trim spaces and fix inconsistent capitalization if required).
+
+Task 3: Merge the datasets
+Merge Sales.csv with Customers.csv using CustomerID.
+Merge the resulting DataFrame with Products.csv using ProductID.
+Verify that all required information is present in the final master DataFrame.
+
+Task 4: Generate summary metrics
+
+Using groupby() and agg(), calculate:
+
+Total sales by category.
+Total sales by region.
+Average sales by product category.
+Total quantity sold by product.
+Number of orders per customer.
+Highest-selling product.
+Top-performing region based on total sales.
+
+Task 5: Export the results
+Save the cleaned master DataFrame as master_data.csv.
+Save the same data in JSON format as master_data.json.
+Optionally, save the summary metrics as a separate CSV file.
+Expected Deliverables
+
+Please create the output in the following file formats:
+master_data.csv
+master_data.json
+summary_metrics.csv (optional but recommended)
+A Python script (retail_data_auditor.py)

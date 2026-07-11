@@ -1,0 +1,105 @@
+# Topics for the day                  
+# Introduction & Motivation 
+# Database Fundamentals     
+# DBMS vs RDBMS             
+# Relational Model          
+# Popular Databases         
+# Client-Server Architecture
+# Practical Session         
+
+07:26
+
+
+Topics for the day                  
+Database Fundamentals     
+DBMS vs RDBMS             
+Relational Model          
+Popular Databases         
+Client-Server Architecture
+
+
+Database -> It is an organized collection of data that allows us to efficiently store, retrieve, update, and delete information.
+
+Customers
+Orders
+Stocks
+Payments
+Reviews
+
+
+
+
+
+CustomerID	CustomerName	CustomerCity
+101	Moksh	Bangalore
+102	Manav	Delhi
+
+OrderID	CustomerID	Amount
+1	101	500
+2	102	700
+
+
+Excel Cons:
+	1. Duplicate Data
+	2. No Relationships
+	3. Security
+	4. Concurrency Problem
+
+Excel	Database
+Small Data 	Huge Data
+Single User	Thousand of Users
+No relationships	Relationships
+Slow search & Updates	Fast search and updation
+Weak Security	Strong security
+	
+	
+	
+DMBS vs RDBMS (Relational Database Management System)
+
+Customer Table
+Order Table
+Payments Table
+
+
+DBMS	RDMSB
+Stores Data	Stores related data
+Relationships optional	Relationships Mandatory
+Less secure	More secure
+Single User	Multiple users
+Normalization limited	Normalisation supported
+
+
+Relational Model
+Table -> A table is strcutured way of storing similar kind of data
+
+StudentID	StudentName	StudentCity
+101	Akshit	Bangalore
+102	Akshit	Delhi
+103	Akshit	Pune
+
+Primary Key -> It is a column that uniquely identifies every row
+	1. It cannot contain duplicate values
+	2. It cannot be NULL
+
+
+Popular RDBMS
+	1. PostgreSQL
+		a. It is open source
+		b. It is very powerful
+			i. Apple
+			ii. Societe Generale
+			iii. Instagram
+	2. MySQL
+		a. It is not opesource
+		b. Secure
+	3. SQL Server -. Microsoft Product
+	4. Oracle
+
+PostgreSQL -> Free
+
+SQL -> Structured Query Language
+CRUD -> Create, Read, Update, Delete
+
+
+
+Client Server architecture

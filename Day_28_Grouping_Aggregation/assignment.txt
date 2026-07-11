@@ -1,0 +1,42 @@
+```
+Q1. Create an employees table with the following columns and appropriate data types:
+
+emp_id
+emp_name
+department
+designation
+salary
+experience_years
+
+Insert at least 10 employee records across 4 different departments (e.g., IT, HR, Finance, Sales).
+
+Aggregate Functions
+
+Q2. Find the total number of employees in the company.
+
+Q3. Calculate the total salary paid to all employees.
+
+Q4. Find the average salary of all employees.
+
+Q5. Find the highest and lowest salary in the company.
+
+GROUP BY
+
+Q6. Display the total number of employees in each department.
+
+Q7. Find the average salary for each department.
+
+Q8. Calculate the total salary expense for each department.
+
+Q9. Display the highest salary in each department.
+
+Q10. Display the minimum years of experience for each department.
+
+HAVING Clause
+
+Q11. Display only those departments where the average salary is greater than ₹60,000.
+
+Q12. Find departments having more than 3 employees.
+
+Q13. Display departments where the total salary expense exceeds ₹2,00,000.
+```
