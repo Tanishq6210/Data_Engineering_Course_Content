@@ -1,0 +1,70 @@
+Homework
+
+Assume a library has the following tables:
+
+Members
+MemberID
+MemberName
+City
+Books
+BookID
+BookTitle
+Author
+BorrowedBooks
+BorrowID
+MemberID
+BookID
+BorrowDate
+
+Write SQL queries for the following scenarios.
+
+Q1.
+
+Display the following details for every borrowed book:
+
+Member Name
+Book Title
+Borrow Date
+Q2.
+
+Display:
+
+Borrow ID
+Member Name
+Author of the borrowed book
+Q3.
+
+Write a query to display all books borrowed by the member Ananya.
+
+Display:
+
+Book Title
+Author
+Borrow Date
+Q4.
+
+Display the following information:
+
+Member Name
+City
+Book Title
+
+Only display members who have borrowed at least one book.
+
+Q5.
+
+Create a complete borrowing report displaying:
+
+Borrow ID
+Member Name
+Book Title
+Author
+Borrow Date
+Q6.
+
+The library wants to see every possible combination of members and books to plan future book recommendations.
+
+Display:
+
+Member Name
+Book Title

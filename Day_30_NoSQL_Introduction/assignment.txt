@@ -1,0 +1,16 @@
+Choose one of the following applications:
+
+Library Management System
+Movie Streaming Platform
+Hospital Management System
+Hotel Booking System
+Student Management System
+
+Design the data in both formats:
+
+Relational database tables (SQL)
+
+Finally, answer the following:
+
+Which design is more suitable for your chosen application?
+Would you choose SQL, NoSQL, or a combination of both? Explain your reasoning.

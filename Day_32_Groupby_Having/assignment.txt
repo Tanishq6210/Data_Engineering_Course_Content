@@ -1,0 +1,26 @@
+A university maintains a database of student exam results. Each student can appear for multiple subjects, and the university wants to analyze student performance across different courses.
+
+Table: StudentResults
+StudentID	StudentName	Course	Semester	Subject	Marks
+101	Aarav	B.Tech CSE	1	Mathematics	85
+102	Diya	B.Tech CSE	1	Mathematics	78
+103	Rohan	B.Tech IT	1	Programming	92
+104	Meera	B.Tech IT	1	Programming	88
+105	Aarav	B.Tech CSE	1	Programming	80
+106	Diya	B.Tech CSE	1	Physics	74
+107	Rohan	B.Tech IT	1	Mathematics	89
+108	Meera	B.Tech IT	1	Physics	91
+109	Aarav	B.Tech CSE	1	Physics	76
+110	Rohan	B.Tech IT	1	Physics	84
+
+Homework Questions
+Q1. Display the number of students' records available for each course.
+Q2. Find the average marks obtained in each subject.
+Q3. Calculate the highest marks scored in each subject.
+Q4. Find the lowest marks obtained in each course.
+Q5. Display the total marks obtained by students in each course.
+Q6. Show only those subjects whose average marks are greater than 85.
+Q7. Find the courses that have more than 3 exam records.
+Q8. Display the average marks for each Course and Subject combination.
+Q9. Find the Course and Subject combinations where the average marks are greater than 82.
+Q10. List the subjects in descending order of their average marks.

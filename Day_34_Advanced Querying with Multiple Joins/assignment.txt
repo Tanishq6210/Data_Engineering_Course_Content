@@ -1,0 +1,132 @@
+Assignment Questions
+Part A – Multiple Table Joins
+Question 1
+
+Display the following information:
+
+Student Name
+Course Name
+Department Name
+Semester
+Question 2
+
+Display
+
+Student Name
+Course Name
+Credits
+Marks Obtained
+Question 3
+
+Display every department along with all the courses offered by that department.
+
+Question 4
+
+Display
+
+Student Name
+Department Name
+Number of courses enrolled
+
+(Hint: GROUP BY)
+
+Question 5
+
+Find the total credits taken by every student.
+
+Part B – Self Join
+
+The university stores professors and their reporting manager in the same table.
+
+Question 6
+
+Display
+
+Professor Name
+Reporting Manager Name
+
+(Use Self Join)
+
+Question 7
+
+Find professors who do not report to anyone.
+
+Question 8
+
+Display the hierarchy of professors in alphabetical order.
+
+Part C – Non-Equi Join
+
+The university classifies professors into salary grades.
+
+Question 9
+
+Display
+
+Professor Name
+Salary
+Salary Grade
+
+(Use BETWEEN)
+
+Question 10
+
+Count how many professors belong to each salary grade.
+
+Part D – Handling Duplicate Rows
+
+A student may enroll in multiple courses.
+
+Question 11
+
+Display
+
+Student Name
+Course Name
+
+Observe why the same student appears multiple times.
+
+Explain in one or two sentences why these are not duplicate records.
+
+Question 12
+
+Display the total number of courses enrolled by each student.
+
+(Use GROUP BY)
+
+Question 13
+
+Find students who have enrolled in more than two courses.
+
+(Use HAVING)
+
+Part E – Summary Reports
+Question 14
+
+Generate a report showing
+
+Department Name
+Number of Students
+Question 15
+
+Generate a report showing
+
+Department Name
+Number of Courses
+Question 16
+
+Generate a report showing
+
+Course Name
+Number of Students Enrolled
+Question 17
+
+Display the average marks obtained in each course.
+
+Question 18
+
+Display the highest marks obtained in every department.
+
+Question 19
+
+Display the student who has earned the highest total credits.

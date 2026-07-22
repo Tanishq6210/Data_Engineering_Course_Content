@@ -1,0 +1,71 @@
+Database Schema
+
+The database contains the following tables:
+
+Patients
+Doctors
+Appointments
+Treatments
+ArchivedAppointments
+
+Question 1 – INSERT INTO SELECT 
+The hospital wants to archive all appointments that were completed before 1 January 2025.
+Write an SQL query to copy all such appointments into the ArchivedAppointments table without manually inserting each row.
+
+
+Question 2 – Filtered Data Copy 
+
+The hospital is opening a new branch that will initially treat only Cardiology patients.
+
+Create a new table named CardiologyPatients and copy only patients whose treatment department is Cardiology into this table.
+
+
+Question 3 – UPDATE with JOIN 
+
+Every patient receives a discount based on their insurance type.
+
+Update the Discount column in the Appointments table according to the following rules:
+
+Insurance Type	Discount
+Premium	25%
+Standard	15%
+Basic	5%
+
+The insurance information is stored in the Patients table.
+
+Question 4 – UPDATE with Multiple Conditions
+Doctors receive a consultation bonus depending on their specialization.
+Update the ConsultationFee column in the Doctors table according to the following rules:
+
+Specialization	Increase
+Surgeon	₹1000
+Cardiologist	₹800
+General Physician	₹500
+
+Write a single SQL query to perform the update.
+
+
+Question 5 – DELETE with JOIN 
+Some appointments belong to patients who no longer exist in the Patients table because their records were deleted accidentally.
+Write an SQL query to delete all such invalid appointments.
+
+
+Question 6 – Find Orphan Treatments
+Some treatment records refer to appointments that no longer exist.
+Write an SQL query to delete all orphan treatment records.
+
+
+Question 7 - Design an ER Diagram for the Hospital Management System containing the following entities:
+
+Patients
+Doctors
+Appointments
+Treatments
+Medicines
+
+Your ER diagram should include:
+
+Primary Keys
+Foreign Keys
+Relationship types
+Cardinalities (1:1, 1:M, M:N where applicable)

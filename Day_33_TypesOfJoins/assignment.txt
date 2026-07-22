@@ -1,0 +1,74 @@
+Hospital Management System
+
+A hospital stores information about patients, doctors, appointments, and treatments.
+
+There are four tables:
+
+Patients -> patient_id, patient_name
+Doctors -> doctors_id, doctors_name
+Appointments -> appointment_id, patient_id (FK), doctor_id(FK), appointment_date
+Treatments -> treatment_id, appointment_id, treatment_details varchar
+
+Not every patient has booked an appointment.
+Not every doctor has treated a patient.
+Some treatments have never been assigned to any appointment.
+
+Write SQL queries for the following scenarios.
+
+Question 1 – 
+Display the name of every patient along with their appointment ID (if they have one).
+
+Question 2 – Finding Missing Relationships
+Find all patients who have never booked an appointment.
+
+
+Question 3 – RIGHT JOIN
+Display every appointment along with the doctor's name who handled it.
+If an appointment has no assigned doctor, it should still appear.
+
+
+Question 4 – FULL OUTER JOIN
+Write a query to display all doctors and all appointments, including:
+Doctors without appointments
+Appointments without doctors
+
+Note: If you are using MySQL, write the query using LEFT JOIN, RIGHT JOIN, and UNION.
+
+
+Question 5 – Handling NULL Values
+Display the names of doctors who have never handled any appointment.
+
+
+Question 6 – Products Never Sold Equivalent
+Find all treatments that have never been used in any appointment.
+
+Question 7 – Compare INNER JOIN vs LEFT JOIN
+
+Write two queries:
+
+Display patients with appointments using INNER JOIN.
+Display patients with appointments using LEFT JOIN.
+
+
+Question 8 – Filtering Joined Results
+Display only the patients who do not have any appointment.
+
+
+Question 9 – Condition in ON Clause
+Suppose only appointments scheduled after 1 July 2026 should be matched.
+
+
+Question 10 – Condition in WHERE Clause
+Write a query to display patients whose appointments are after 1 July 2026 using a WHERE clause.
+
+
+Question 11 – Detect Missing Relationships
+Find all doctors who have never treated any patient.
+
+
+Question 12 – Multiple Missing Relationships
+Write separate queries to find:
+
+Patients without appointments.
+Doctors without appointments.
+Treatments never assigned to any appointment.

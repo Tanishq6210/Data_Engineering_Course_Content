@@ -1,0 +1,13 @@
+[
+    {
+        "name": "Laptop",
+        "ram": "16GB",
+        "processor": "i7",
+        "rom": "512GB"
+    },
+    {
+        "name": "Phonee",
+        "camera": "48mp",
+        "battery": "4000mAh"
+    }
+]
