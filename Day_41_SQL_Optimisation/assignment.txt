@@ -1,0 +1,216 @@
+Create Table
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Department VARCHAR(50),
+    Salary DECIMAL(10,2),
+    Age INT,
+    City VARCHAR(50)
+);
+Insert Sample Data
+INSERT INTO Employees VALUES
+(101,'Alice','IT',75000,28,'Bangalore'),
+(102,'Bob','HR',55000,32,'Mumbai'),
+(103,'Charlie','Finance',68000,35,'Delhi'),
+(104,'David','IT',92000,40,'Hyderabad'),
+(105,'Eva','Marketing',48000,27,'Pune'),
+(106,'Frank','Finance',61000,31,'Chennai'),
+(107,'Grace','HR',53000,29,'Bangalore'),
+(108,'Henry','IT',88000,45,'Delhi'),
+(109,'Isabella','Marketing',51000,30,'Mumbai'),
+(110,'Jack','Finance',97000,41,'Hyderabad'),
+(111,'Kevin','IT',79000,33,'Pune'),
+(112,'Laura','HR',58000,26,'Chennai'),
+(113,'Mike','Marketing',65000,36,'Delhi'),
+(114,'Nancy','Finance',73000,39,'Mumbai'),
+(115,'Oliver','IT',83000,34,'Bangalore'),
+(116,'Peter','Marketing',47000,25,'Pune'),
+(117,'Queen','HR',62000,37,'Hyderabad'),
+(118,'Robert','Finance',91000,42,'Delhi'),
+(119,'Sophia','IT',76000,29,'Chennai'),
+(120,'Thomas','Marketing',54000,38,'Bangalore');
+Part 2: Practical Questions
+Question 1
+
+Run the following query using EXPLAIN.
+
+SELECT *
+FROM Employees;
+
+Answer the following:
+
+Is the database performing a Table Scan or using an Index?
+Why do you think the optimizer selected this execution plan?
+Question 2
+
+Execute the following query.
+
+SELECT *
+FROM Employees
+WHERE Salary > 70000;
+
+Observe the execution plan.
+
+Which operation is being used?
+Why?
+Question 3
+
+Create an index on the Salary column.
+
+CREATE INDEX idx_salary
+ON Employees(Salary);
+
+Run the previous query again.
+
+Compare both execution plans.
+
+Write three observations.
+
+Question 4
+
+Run the following query.
+
+SELECT *
+FROM Employees
+WHERE Salary = 92000;
+Is the execution plan different from Question 2?
+Explain why.
+Question 5
+
+Run the following query.
+
+SELECT *
+FROM Employees
+WHERE Salary > 10000;
+
+Even though an index exists, explain why the optimizer may still choose a Table Scan.
+
+Question 6
+
+Drop the Salary index.
+
+DROP INDEX idx_salary
+ON Employees;
+
+Run Question 4 again.
+
+Compare the execution plan before and after dropping the index.
+
+Question 7
+
+Create an index on the Department column.
+
+CREATE INDEX idx_department
+ON Employees(Department);
+
+Run
+
+SELECT *
+FROM Employees
+WHERE Department='IT';
+
+Observe whether the optimizer uses the index.
+
+Write your observations.
+
+Question 8
+
+Execute
+
+SELECT *
+FROM Employees
+ORDER BY Salary;
+
+After creating an index on Salary, does the execution plan change?
+
+Explain why or why not.
+
+Question 9
+
+Run
+
+SELECT Department,
+AVG(Salary)
+FROM Employees
+GROUP BY Department;
+
+Use EXPLAIN.
+
+Identify:
+
+Estimated rows
+Cost
+Type of scan used
+Question 10
+
+Compare the execution plans of:
+
+SELECT *
+FROM Employees
+WHERE EmployeeID=110;
+
+and
+
+SELECT *
+FROM Employees
+WHERE Salary=91000;
+
+Why are the execution plans different?
+
+Part 3: Theory Questions
+Question 11
+
+Explain the three stages of SQL query execution with a real-life example.
+
+Question 12
+
+Write the logical query processing order in SQL.
+
+Then explain what happens at each stage.
+
+Question 13
+
+What is the difference between:
+
+Parsing
+Optimization
+Execution
+
+Give one example of each.
+
+Question 14
+
+What is a Query Optimizer?
+
+Why is it considered the "brain" of the database?
+
+Question 15
+
+Explain the difference between:
+
+Table Scan
+Index Scan
+Index Seek
+
+Include a real-life example for each.
+
+Question 16
+
+Why doesn't a database always use an index even when one exists?
+
+Explain at least four reasons.
+
+Question 17
+
+What is an Execution Plan?
+
+What information can we obtain from it?
+
+Question 18
+
+Differentiate between:
+
+EXPLAIN
+EXPLAIN ANALYZE
+
+When should each be used?

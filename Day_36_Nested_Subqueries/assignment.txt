@@ -1,0 +1,157 @@
+-- ===========================
+-- DEPARTMENTS
+-- ===========================
+
+CREATE TABLE departments (
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(50),
+    building VARCHAR(50)
+);
+
+INSERT INTO departments VALUES
+(101,'Computer Science','Block A'),
+(102,'Mechanical','Block B'),
+(103,'Electrical','Block C'),
+(104,'Civil','Block D');
+
+-- ===========================
+-- STUDENTS
+-- ===========================
+
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(50),
+    cgpa DECIMAL(3,2),
+    department_id INT,
+    FOREIGN KEY(department_id)
+    REFERENCES departments(department_id)
+);
+
+INSERT INTO students VALUES
+(1,'Rahul',8.50,101),
+(2,'Priya',9.20,101),
+(3,'Aman',7.80,102),
+(4,'Neha',8.10,102),
+(5,'Riya',9.60,103),
+(6,'Karan',6.90,103),
+(7,'Simran',8.80,104),
+(8,'Rohit',7.50,104),
+(9,'Ankit',9.00,101),
+(10,'Sneha',8.40,103);
+
+-- ===========================
+-- COURSES
+-- ===========================
+
+CREATE TABLE courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(50),
+    credits INT
+);
+
+INSERT INTO courses VALUES
+(201,'Database Systems',4),
+(202,'Operating Systems',4),
+(203,'Machine Learning',5),
+(204,'Thermodynamics',3),
+(205,'Circuit Theory',4),
+(206,'Structural Design',5);
+
+-- ===========================
+-- ENROLLMENTS
+-- ===========================
+
+CREATE TABLE enrollments (
+    enrollment_id INT PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    marks INT,
+    FOREIGN KEY(student_id)
+    REFERENCES students(student_id),
+    FOREIGN KEY(course_id)
+    REFERENCES courses(course_id)
+);
+
+INSERT INTO enrollments VALUES
+(1,1,201,85),
+(2,1,202,79),
+(3,2,201,94),
+(4,2,203,91),
+(5,3,204,72),
+(6,4,204,81),
+(7,5,205,96),
+(8,6,205,65),
+(9,7,206,88),
+(10,8,206,75),
+(11,9,203,89),
+(12,10,205,84);
+
+
+Questions:
+Part A – Scalar Subqueries
+Question 1
+
+Find students whose CGPA is higher than the average CGPA of all students.
+
+Question 2
+
+Find the student(s) having the highest CGPA.
+
+Question 3
+
+Find the course(s) having the maximum number of credits.
+
+Part B – Multi-row Subqueries (IN)
+Question 4
+
+Display all students belonging to departments located in Block A.
+
+Question 5
+
+Find students who are enrolled in at least one course.
+
+(Hint: Use the enrollments table.)
+
+Question 6
+
+Find all courses taken by students whose CGPA is greater than 9.0.
+
+Part C – Subqueries in SELECT
+Question 7
+
+Display every student's name, CGPA, and the overall average CGPA as an additional column.
+
+Question 8
+
+Display every course name along with the highest marks scored by any student in the university.
+
+Part D – Subqueries in FROM
+Question 9
+
+Calculate the average CGPA for every department using a subquery in the FROM clause.
+
+Question 10
+
+Using the result of Question 9, display only departments whose average CGPA is greater than 8.5.
+
+Part E – ANY and ALL
+Question 11
+
+Find students whose CGPA is greater than ANY student in the Mechanical department.
+
+Question 12
+
+Find students whose CGPA is greater than ALL students in the Civil department.
+
+Part F – Rewrite Queries
+Question 13
+
+Write a query using JOIN to display students studying in departments located in Block C.
+
+Rewrite the same query using a Subquery.
+
+Question 14
+
+Write a JOIN query to display students who are enrolled in any course.
+
+Rewrite the same query using a subquery with IN.

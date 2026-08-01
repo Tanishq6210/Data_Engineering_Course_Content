@@ -1,0 +1,148 @@
+CREATE TABLE Departments (
+    DepartmentID INT PRIMARY KEY,
+    DepartmentName VARCHAR(50)
+);
+
+CREATE TABLE Professors (
+    ProfessorID INT PRIMARY KEY,
+    ProfessorName VARCHAR(50),
+    Salary DECIMAL(10,2),
+    DepartmentID INT,
+    FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+);
+
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    StudentName VARCHAR(50),
+    DepartmentID INT,
+    FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+);
+
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(60),
+    DepartmentID INT,
+    FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+);
+
+CREATE TABLE Enrollments (
+    EnrollmentID INT PRIMARY KEY,
+    StudentID INT,
+    CourseID INT,
+    Semester VARCHAR(20),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+INSERT INTO Departments VALUES
+(1,'Computer Science'),
+(2,'Electronics'),
+(3,'Mechanical'),
+(4,'Civil'),
+(5,'Mathematics');
+
+INSERT INTO Professors VALUES
+(101,'Dr. Sharma',90000,1),
+(102,'Dr. Mehta',120000,1),
+(103,'Dr. Kapoor',85000,2),
+(104,'Dr. Rao',95000,2),
+(105,'Dr. Verma',70000,3);
+
+INSERT INTO Students VALUES
+(201,'Aman',1),
+(202,'Priya',1),
+(203,'Rahul',2),
+(204,'Sneha',3),
+(205,'Vikas',4),
+(206,'Anjali',5);
+
+INSERT INTO Courses VALUES
+(301,'Database Systems',1),
+(302,'Operating Systems',1),
+(303,'Digital Electronics',2),
+(304,'Thermodynamics',3),
+(305,'Structural Engineering',4);
+
+INSERT INTO Enrollments VALUES
+(1,201,301,'Spring'),
+(2,201,302,'Spring'),
+(3,202,301,'Spring'),
+(4,203,303,'Spring'),
+(5,204,304,'Spring');
+
+
+Assignment Questions:
+Part A – Correlated Subqueries
+Question 1
+
+Find professors whose salary is higher than the average salary of professors in their own department.
+
+Concept: Correlated Subquery
+
+Question 2
+
+Find students whose department has more than one student.
+
+Hint: Use a correlated subquery with COUNT().
+
+Question 3
+
+Find departments where the average professor salary is greater than ₹90,000.
+
+Hint: Use a correlated subquery or compare department-wise averages.
+
+Part B – EXISTS
+Question 4
+
+Find students who have enrolled in at least one course.
+
+Concept: EXISTS
+
+Question 5
+
+Find departments that have at least one professor.
+
+Question 6
+
+Find courses that have at least one student enrolled.
+
+Part C – NOT EXISTS
+Question 7
+
+Find students who have not enrolled in any course.
+
+Question 8
+
+Find departments that do not have any professors.
+
+Question 9
+
+Find courses that have no student enrollments.
+
+Part D – Anti Join Logic
+Question 10
+
+Write a query using NOT EXISTS to find departments that have no students.
+
+Question 11
+
+Solve Question 10 again using LEFT JOIN and IS NULL.
+
+Compare both solutions.
+
+Part E – EXISTS vs IN
+Question 12
+
+Write two different queries to find students who have enrolled in at least one course:
+
+One using IN
+One using EXISTS
+
+Observe that both produce the same result.
+
+Question 13
+
+Write two different queries to find departments that have professors:
+
+Using IN
+Using EXISTS

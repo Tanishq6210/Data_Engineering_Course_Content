@@ -1,0 +1,195 @@
+Create Tables
+CREATE TABLE departments (
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(50)
+);
+
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    employee_name VARCHAR(50),
+    department_id INT,
+    salary DECIMAL(10,2),
+    hire_date DATE,
+    FOREIGN KEY (department_id) REFERENCES departments(department_id)
+);
+
+CREATE TABLE projects (
+    project_id INT PRIMARY KEY,
+    project_name VARCHAR(50),
+    budget DECIMAL(12,2)
+);
+
+CREATE TABLE employee_projects (
+    employee_id INT,
+    project_id INT,
+    hours_worked INT,
+    PRIMARY KEY (employee_id, project_id),
+    FOREIGN KEY (employee_id) REFERENCES employees(employee_id),
+    FOREIGN KEY (project_id) REFERENCES projects(project_id)
+);
+
+Insert Data
+INSERT INTO departments VALUES
+(101,'IT'),
+(102,'HR'),
+(103,'Finance'),
+(104,'Marketing');
+
+INSERT INTO employees VALUES
+(1,'Rahul',101,85000,'2021-02-15'),
+(2,'Amit',101,95000,'2020-08-12'),
+(3,'Priya',102,60000,'2022-01-20'),
+(4,'Sneha',103,90000,'2019-07-10'),
+(5,'Rohan',104,70000,'2023-03-05'),
+(6,'Anjali',101,78000,'2021-11-18'),
+(7,'Vikas',103,105000,'2018-05-25'),
+(8,'Neha',104,68000,'2022-09-30');
+
+INSERT INTO projects VALUES
+(201,'ERP Upgrade',500000),
+(202,'Payroll System',300000),
+(203,'Mobile App',800000),
+(204,'Website Redesign',250000);
+
+INSERT INTO employee_projects VALUES
+(1,201,120),
+(1,203,60),
+(2,201,180),
+(2,202,80),
+(3,202,140),
+(4,203,170),
+(5,204,100),
+(6,201,90),
+(6,203,75),
+(7,203,210),
+(8,204,130);
+
+
+
+
+Homework Questions
+Section A – Basic CTE
+Question 1
+Create a CTE that stores the salary details of employees earning more than 80,000.
+
+Display all columns from the CTE.
+
+Question 2
+
+Create a CTE that stores employees hired after January 1, 2021.
+
+Display employee name and hire date.
+
+Question 3
+
+Create a CTE that calculates the total hours worked by every employee across all projects.
+
+Display:
+
+Employee ID
+Total Hours
+Section B – Replacing Nested Subqueries
+Question 4
+
+The following query uses a nested subquery.
+
+Rewrite it using a CTE.
+
+SELECT *
+FROM (
+    SELECT department_id,
+           AVG(salary) avg_salary
+    FROM employees
+    GROUP BY department_id
+) A
+WHERE avg_salary > 80000;
+Question 5
+
+Rewrite the following query using a CTE.
+
+SELECT *
+FROM (
+    SELECT
+        project_id,
+        SUM(hours_worked) total_hours
+    FROM employee_projects
+    GROUP BY project_id
+) P
+WHERE total_hours > 200;
+
+Section C – Aggregation using CTE
+Question 6
+
+Create a CTE that calculates the average salary of each department.
+
+Display:
+
+Department Name
+Average Salary
+Question 7
+
+Create a CTE that calculates the total hours worked on every project.
+
+Display:
+
+Project Name
+Total Hours
+Question 8
+
+Create a CTE that calculates the number of employees working in each department.
+
+Display:
+
+Department Name
+Employee Count
+Section D – Multiple CTEs
+Question 9
+
+Using two CTEs,
+
+First calculate total hours worked by every employee.
+Then create another CTE to find employees whose total hours exceed 150.
+
+Display:
+
+Employee Name
+Total Hours
+Question 10
+
+Using multiple CTEs,
+
+Calculate average salary for every department.
+Find departments whose average salary is greater than the overall average salary.
+
+Display:
+
+Department Name
+Department Average Salary
+Question 11
+
+Create two CTEs.
+
+First CTE:
+
+Calculate total project hours.
+
+Second CTE:
+
+Find projects having more hours than the average project hours.
+
+Display project names.
+
+Section E – Complex Filtering
+Question 12
+
+Create a CTE that calculates total hours worked by every employee.
+
+From the CTE,
+
+display employees who worked on more than one project and whose total hours exceed 150.
+
+Question 13
+
+Create a CTE that calculates total salary paid in every department.
+
+Display only departments where the total salary expense exceeds 170,000.

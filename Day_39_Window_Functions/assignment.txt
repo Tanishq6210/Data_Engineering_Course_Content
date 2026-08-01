@@ -1,0 +1,129 @@
+Homework – Window Functions
+
+This homework uses an Online Retail Store scenario instead of employees and students so that students apply the same concepts in a different context.
+
+Database Creation
+Create Products Table
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100),
+    category VARCHAR(50),
+    price DECIMAL(10,2)
+);
+
+Create Customers Table
+CREATE TABLE retail_customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(100),
+    city VARCHAR(50),
+    total_spent DECIMAL(10,2)
+);
+
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    product_id INT,
+    quantity INT,
+    order_amount DECIMAL(10,2),
+    order_date DATE
+);
+
+Insert Data
+INSERT INTO products VALUES
+(101,'Laptop','Electronics',85000),
+(102,'Mobile','Electronics',65000),
+(103,'Headphones','Electronics',65000),
+(104,'Smart Watch','Electronics',30000),
+(105,'Office Chair','Furniture',12000),
+(106,'Study Table','Furniture',18000),
+(107,'Wardrobe','Furniture',18000),
+(108,'Sofa','Furniture',45000),
+(109,'T-Shirt','Clothing',1500),
+(110,'Jeans','Clothing',2500),
+(111,'Jacket','Clothing',4500),
+(112,'Sneakers','Clothing',4500),
+(113,'Mixer Grinder','Home Appliances',5500),
+(114,'Microwave','Home Appliances',12000),
+(115,'Refrigerator','Home Appliances',45000),
+(116,'Air Conditioner','Home Appliances',55000);
+
+Insert Data
+INSERT INTO retail_customers VALUES
+(1,'Rahul','Delhi',95000),
+(2,'Sneha','Mumbai',62000),
+(3,'Amit','Delhi',62000),
+(4,'Neha','Bangalore',45000),
+(5,'Rohan','Delhi',25000),
+(6,'Priya','Mumbai',78000),
+(7,'Anjali','Bangalore',110000),
+(8,'Vikas','Delhi',35000),
+(9,'Megha','Mumbai',78000),
+(10,'Karan','Bangalore',15000);
+Create Orders Table
+
+Insert Data
+INSERT INTO orders VALUES
+(1001,1,101,1,85000,'2026-06-01'),
+(1002,2,102,1,65000,'2026-06-03'),
+(1003,3,103,2,130000,'2026-06-04'),
+(1004,4,110,3,7500,'2026-06-06'),
+(1005,5,105,1,12000,'2026-06-07'),
+(1006,6,115,1,45000,'2026-06-10'),
+(1007,7,116,1,55000,'2026-06-11'),
+(1008,8,109,5,7500,'2026-06-13'),
+(1009,9,111,2,9000,'2026-06-14'),
+(1010,10,113,3,16500,'2026-06-16');
+
+
+Homework Questions
+Question 1 (OVER())
+Display every product along with its price and the average price of all products.
+
+Question 2 (PARTITION BY)
+Display every product along with its category and the average price within its category.
+
+Question 3 (ORDER BY inside Window)
+Assign a unique number to every product based on price from highest to lowest.
+
+Question 4 (ROW_NUMBER + PARTITION BY)
+Assign a unique number to every product within each category, ordered by price (highest first).
+
+Question 5 (Top N Per Group)
+Display the top 2 most expensive products from each category.
+
+Question 6 (RANK)
+Rank customers according to the total amount they have spent, from highest spender to lowest.
+If two customers have spent the same amount, they should receive the same rank.
+
+Question 7 (DENSE_RANK)
+Rank customers according to total spending using DENSE_RANK().
+
+
+
+Expected Concepts
+
+Difference between RANK() and DENSE_RANK()
+Question 8 (ROW_NUMBER vs RANK)
+
+Generate three columns showing
+
+ROW_NUMBER()
+RANK()
+DENSE_RANK()
+
+for customer spending.
+
+Observe and explain the differences.
+
+Expected Concepts
+
+Comparison of all three ranking functions
+Question 9 (NTILE)
+
+Divide customers into 4 equal spending groups (quartiles) based on total_spent.
+
+Label them using NTILE(4).
+
+Expected Concepts
+
+NTILE()

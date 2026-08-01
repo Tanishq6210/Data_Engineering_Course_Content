@@ -1,0 +1,107 @@
+CREATE TABLE daily_orders (
+    order_day DATE PRIMARY KEY,
+    total_orders INT,
+    total_revenue DECIMAL(10,2)
+);
+
+INSERT INTO daily_orders VALUES
+('2025-06-01',120,24000),
+('2025-06-02',135,27000),
+('2025-06-03',128,25600),
+('2025-06-04',145,29000),
+('2025-06-05',150,30500),
+('2025-06-06',165,33000),
+('2025-06-07',160,32200),
+('2025-06-08',175,35000),
+('2025-06-09',182,36400),
+('2025-06-10',178,35700),
+('2025-06-11',190,38200),
+('2025-06-12',200,40100),
+('2025-06-13',195,39200),
+('2025-06-14',210,42500);
+
+Homework Questions
+Question 1
+
+Display each day's orders along with the previous day's order count.
+
+Question 2
+
+Display each day's orders along with the next day's order count.
+
+Question 3
+
+Calculate the difference in total orders compared to the previous day.
+
+(Hint: Today's Orders - Previous Day's Orders)
+
+Question 4
+
+Find the running total of orders received till each day.
+
+Example
+
+Date	Running Orders
+Day1	120
+Day2	255
+Day3	383
+Question 5
+
+Find the running total revenue earned till each day.
+
+Question 6
+
+Calculate the cumulative average number of orders from the first day until the current day.
+
+Example
+
+Day	Average Orders Till Today
+Day1	120
+Day2	127.5
+Day3	127.67
+Question 7
+
+Calculate the 3-day moving average of total orders.
+
+The average should include:
+
+Current day
+Previous day
+Two days before
+Question 8
+
+Display the first day's order count for every row using a window function.
+
+Question 9
+
+Display the last day's order count for every row using a window function.
+
+Question 10
+
+Calculate the difference in revenue compared to the previous day.
+
+Question 11
+
+Find the day on which the highest increase in orders occurred compared to the previous day.
+
+(Use a window function and sort appropriately.)
+
+Question 12
+
+Find all days where the current day's orders were less than the previous day's orders.
+
+Question 13
+
+Display the following columns:
+
+Date
+Orders
+Previous Day Orders
+Next Day Orders
+
+using both LAG() and LEAD() in the same query.
+
+Question 14
+
+Calculate the 7-day moving average of total revenue.
+
