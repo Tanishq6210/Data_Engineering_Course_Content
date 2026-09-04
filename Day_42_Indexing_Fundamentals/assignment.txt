@@ -1,0 +1,167 @@
+Step 1: Create Database Tables
+CREATE TABLE Restaurants (
+    restaurant_id INT PRIMARY KEY,
+    restaurant_name VARCHAR(100),
+    city VARCHAR(50),
+    cuisine VARCHAR(50),
+    rating DECIMAL(2,1),
+    opening_year INT
+);
+
+CREATE TABLE Orders (
+    order_id INT PRIMARY KEY,
+    customer_name VARCHAR(100),
+    restaurant_id INT,
+    order_date DATE,
+    delivery_status VARCHAR(20),
+    payment_method VARCHAR(30),
+    total_amount DECIMAL(10,2),
+    delivery_partner VARCHAR(100),
+    FOREIGN KEY (restaurant_id) REFERENCES Restaurants(restaurant_id)
+);
+Step 2: Insert Sample Data
+INSERT INTO Restaurants VALUES
+(101,'Spice Villa','Delhi','North Indian',4.5,2018),
+(102,'Pizza Planet','Mumbai','Italian',4.2,2020),
+(103,'Dragon Bowl','Bangalore','Chinese',4.7,2017),
+(104,'Burger Town','Hyderabad','Fast Food',4.1,2021),
+(105,'Royal Biryani','Lucknow','Biryani',4.8,2016),
+(106,'Tandoori Hub','Delhi','North Indian',4.4,2019),
+(107,'Cafe Aroma','Pune','Cafe',4.3,2022),
+(108,'Sushi House','Bangalore','Japanese',4.6,2018);
+INSERT INTO Orders VALUES
+(1001,'Amit',101,'2026-07-01','Delivered','UPI',850,'Rakesh'),
+(1002,'Neha',103,'2026-07-01','Delivered','Card',1200,'Vikas'),
+(1003,'Rahul',105,'2026-07-02','Cancelled','Cash',450,'Ankit'),
+(1004,'Priya',102,'2026-07-02','Delivered','Card',950,'Karan'),
+(1005,'Rohan',101,'2026-07-03','Preparing','UPI',780,'Suresh'),
+(1006,'Sneha',104,'2026-07-03','Delivered','Cash',620,'Mohit'),
+(1007,'Anjali',103,'2026-07-04','Delivered','UPI',1340,'Aman'),
+(1008,'Kunal',108,'2026-07-04','Preparing','Card',1800,'Vivek'),
+(1009,'Pooja',107,'2026-07-05','Delivered','UPI',560,'Rahul'),
+(1010,'Arjun',105,'2026-07-05','Cancelled','Cash',990,'Ankit'),
+(1011,'Ritika',101,'2026-07-06','Delivered','Card',640,'Rakesh'),
+(1012,'Manish',106,'2026-07-06','Delivered','UPI',730,'Karan'),
+(1013,'Deepak',102,'2026-07-07','Preparing','Cash',880,'Vikas'),
+(1014,'Simran',108,'2026-07-07','Delivered','Card',2200,'Aman'),
+(1015,'Varun',103,'2026-07-08','Delivered','UPI',1450,'Mohit');
+Homework Questions
+Part A – Understanding Indexes
+Question 1
+
+Write a query to find all orders whose total amount is greater than ₹1000.
+
+Execute the query without creating any index.
+Use EXPLAIN ANALYZE.
+Record the execution plan.
+Question 2
+
+Create an index on the total_amount column.
+
+Execute the same query again.
+
+Answer:
+
+Did the execution plan change?
+Did the database use the index?
+Question 3
+
+Customers frequently search restaurants by city.
+
+Create an appropriate index and verify whether the following query uses it.
+
+SELECT *
+FROM Restaurants
+WHERE city='Bangalore';
+Question 4
+
+Restaurant managers frequently search orders using both restaurant_id and order_date.
+
+Create a composite index suitable for this requirement.
+
+Test it using:
+
+SELECT *
+FROM Orders
+WHERE restaurant_id=103
+AND order_date='2026-07-04';
+Question 5
+
+Using the same composite index from Question 4, execute:
+
+SELECT *
+FROM Orders
+WHERE restaurant_id=103;
+
+Does the query still benefit from the composite index?
+
+Explain your answer.
+
+Question 6
+
+Now execute:
+
+SELECT *
+FROM Orders
+WHERE order_date='2026-07-04';
+
+Will the same composite index be used efficiently?
+
+Explain using the Left-to-Right Rule.
+
+Question 7
+
+Drop the composite index created earlier.
+
+Verify that it has been removed.
+
+Question 8
+
+Recreate the composite index and confirm that it appears in the list of indexes.
+
+Part B – Conceptual Questions
+Question 9
+
+Explain why indexes improve the performance of SELECT queries.
+
+Question 10
+
+Why can having too many indexes reduce database performance?
+
+Question 11
+
+Suppose the delivery_status column contains only these values:
+
+Delivered
+Preparing
+Cancelled
+
+Should this column be indexed?
+
+Justify your answer.
+
+Question 12
+
+A table contains only 15 rows.
+
+Would creating an index improve performance?
+
+Explain why or why not.
+
+Question 13
+
+The payment_method column contains only:
+
+UPI
+Card
+Cash
+
+Should an index be created on this column?
+
+Explain your reasoning.
+
+Question 14
+
+A report joins the Orders and Restaurants tables using the restaurant_id column thousands of times every day.
+
+Would indexing this column be beneficial? Explain why.

@@ -1,0 +1,84 @@
+Part A – Theory Questions
+Q1.
+
+What is a SARGable query? Explain why SARGable queries generally perform better than non-SARGable queries.
+
+Q2.
+
+Consider the following query:
+
+SELECT *
+FROM Employees
+WHERE YEAR(join_date) = 2025;
+Why is this query not SARGable?
+Rewrite it into an optimized version.
+Q3.
+
+Explain why using SELECT * can negatively affect query performance. Mention at least four reasons.
+
+Q4.
+
+A developer writes the following query:
+
+SELECT *
+FROM Products
+LIMIT 20;
+
+Explain why using LIMIT (or TOP) can improve performance in applications such as e-commerce websites.
+
+Q5.
+
+Explain the concept of filtering early using a real-life example that is different from the one discussed in class.
+
+Q6.
+
+When should DISTINCT be used? Give one example where it is necessary and one example where it is unnecessary.
+
+Q7.
+
+Explain what happens if a JOIN condition is missing between two tables.
+
+Q8.
+
+Differentiate between Index Seek and Index Scan with suitable examples.
+
+Part B – Query Optimization
+
+Rewrite the following queries into more optimized versions.
+
+Q9.
+SELECT *
+FROM Orders
+WHERE YEAR(order_date) = 2024;
+Q10.
+SELECT *
+FROM Customers
+WHERE UPPER(customer_name) = 'RAHUL';
+Q11.
+SELECT DISTINCT customer_id
+FROM Orders;
+
+Assume customer_id is already unique in the Orders table.
+
+Is DISTINCT required? Explain.
+
+Q12.
+
+Rewrite the following query so that it returns only the required columns.
+
+SELECT *
+FROM Employees
+WHERE department = 'IT';
+
+Only display:
+
+Employee ID
+Employee Name
+Salary
+Q13.
+
+Optimize the following query.
+
+SELECT *
+FROM Orders
+WHERE MONTH(order_date) = 8;

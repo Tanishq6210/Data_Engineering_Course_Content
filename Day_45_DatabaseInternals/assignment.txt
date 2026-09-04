@@ -1,0 +1,133 @@
+Database Internals Case Scenarios
+Instructions for Students
+
+For each scenario:
+
+Don't just name the database concept.
+Explain what is happening internally.
+Identify the possible problem.
+Explain why the problem occurs.
+Suggest one or more possible solutions.
+You may make reasonable assumptions, but clearly mention them.
+
+There may be more than one correct answer. The goal is to demonstrate your reasoning.
+
+Case Scenario 1 — The Double Booking Problem
+
+An online movie-ticket booking system has only one seat remaining: A15.
+
+At exactly the same time:
+
+Customer A selects seat A15.
+Customer B also selects seat A15.
+
+Both requests reach the database almost simultaneously.
+
+The database initially contains:
+
+Seat A15 → AVAILABLE
+
+Customer A's application checks:
+
+Is A15 available?
+YES
+
+Before A completes the booking, Customer B checks:
+
+Is A15 available?
+YES
+
+Both applications now try to book A15.
+
+Questions
+What could go wrong if the database does not properly handle concurrency?
+Which database concept can prevent both customers from successfully booking the same seat?
+Where would locking be useful?
+Would this situation involve a transaction? Explain why.
+Which ACID property is particularly important here?
+Imagine Customer A's payment succeeds but the seat-booking operation fails. What should happen?
+What would you design differently if this system had 10 million users trying to book tickets during a popular movie release?
+
+
+
+Case Scenario 2 — The Deadlock at the Bank
+
+A bank has two accounts:
+
+Account A → ₹50,000
+Account B → ₹30,000
+
+Two customers perform transfers at almost the same time.
+
+Transaction T1
+Transfer ₹5,000 from A → B
+
+T1 first locks Account A.
+
+Then it needs to update Account B.
+
+Transaction T2
+Transfer ₹10,000 from B → A
+
+T2 first locks Account B.
+
+Then it needs to update Account A.
+
+Now:
+
+T1 → has A → waiting for B
+
+T2 → has B → waiting for A
+Questions
+What is happening here?
+Why can't T1 continue?
+Why can't T2 continue?
+What database problem has occurred?
+Draw this scenario as a diagram showing the two transactions and their locks.
+What could the database do to resolve the situation?
+If you were designing the banking system, how could you reduce the likelihood of this happening?
+Would simply increasing the database server's CPU solve the problem? Explain.
+
+Case Scenario 3 — The Midnight ETL Problem
+
+An e-commerce company runs an ETL pipeline every night.
+
+The pipeline performs:
+
+Orders
+   ↓
+Extract
+   ↓
+Transform
+   ↓
+Update customer statistics
+   ↓
+Load reporting tables
+
+The ETL job processes 50 million orders.
+
+Recently, the company noticed:
+
+ETL previously → 45 minutes
+ETL now → 3 hours
+
+At the same time, employees report that the company's internal dashboard has become very slow.
+
+The database administrator notices:
+
+CPU usage is high.
+Disk I/O is high.
+Several queries are waiting.
+Some transactions remain active for a long time.
+Reporting queries are running while ETL is still processing.
+Questions
+Identify at least four possible reasons for the slowdown.
+Which database internals concepts from today's class are relevant?
+How could pages/blocks contribute to the problem?
+How could locks contribute to the problem?
+How could long-running transactions affect other queries?
+Would adding indexes necessarily solve the entire problem?
+What changes could you make to the ETL workflow?
+Would moving reporting queries to another database help? Why?
+Would running ETL in smaller batches potentially help?
+If you were the Data Engineer responsible for this pipeline, what would you investigate first, second, and third?
