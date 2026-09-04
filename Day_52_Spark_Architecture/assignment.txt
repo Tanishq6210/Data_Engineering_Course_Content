@@ -1,0 +1,19 @@
+Question 1 — Create and Inspect Partitions
+
+Create a DataFrame containing at least 20 records representing something like:
+
+customer_id, city, amount
+1, Delhi, 500
+2, Mumbai, 700
+...
+
+Perform the following:
+
+Print the number of partitions.
+Repartition the DataFrame into 4 partitions.
+Print the number of partitions again.
+Use spark_partition_id() to display which partition each record belongs to.
+
+Expected concepts: partitions, repartitioning, data distribution.
+
+UI: http://localhost:4040
