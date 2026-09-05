@@ -1,0 +1,26 @@
+Using the following PySpark DataFrame:
+
+data = [
+    (1, "Delhi", 1000),
+    (2, "Mumbai", 2000),
+    (3, "Delhi", 1500),
+    (4, "Bangalore", 3000),
+    (5, "Mumbai", 2500),
+    (6, "Delhi", 1200)
+]
+
+df = spark.createDataFrame(data, ["order_id", "city", "amount"])
+
+Complete the following in one Python program:
+
+a. Filter the records where amount > 1500.
+
+b. Select only order_id, city, and amount.
+
+c. Add a new column tax equal to 18% of amount.
+
+d. Group the data by city and calculate the total sales for each city.
+
+e. Display the final result using an action.
+
+Do mention whichever command you're writing -> What it is? Transformation -> Which kind of transformation, Action
