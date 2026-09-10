@@ -1,0 +1,335 @@
+Homework Assignment — End-to-End Data Extraction & Cleaning with PySpark
+Scenario: Food Delivery Order Data Pipeline
+
+You are working as a Data Engineer for a food delivery company. The company receives daily order data from different restaurants in a CSV file.
+
+The raw data contains missing values, inconsistent formats, incorrect data types, invalid records, and unnecessary columns.
+
+Your task is to build an end-to-end PySpark pipeline that:
+
+Extracts → Inspects → Cleans → Transforms → Validates → Stores the data.
+
+1. Input Dataset
+
+Create a file named:
+
+food_delivery_orders.csv
+
+Use the following data:
+
+order_id,customer_id,customer_name,age,restaurant,city,food_price,quantity,delivery_fee,order_status,customer_rating,is_active,internal_note
+ORD001,C101,Rahul Sharma,25,Food Hub,Delhi,450.50,2,40,Delivered,4.5,true,Normal order
+ORD002,C102,Priya Singh,29,Spice Kitchen,Mumbai,799.00,1,50,Delivered,5.0,true,Regular customer
+ORD003,C103,Amit Kumar,34,Burger Point,delhi,299.50,3,30,Delivered,4.0,true,Discount applied
+ORD004,C104,Neha Verma,28,Pizza Corner, BANGALORE ,599.00,2,45,Preparing,4.2,true,Kitchen delay
+ORD005,C105,Rohan Mehta,-5,Food Hub,Mumbai,450.00,1,40,Delivered,3.5,true,Invalid age
+ORD006,C106,Anjali Gupta,31,Spice Kitchen,Delhi,invalid,2,50,Delivered,4.8,true,Invalid price
+ORD007,C107,Vikas Sharma,42,Burger Point,MUMBAI,350.00,,35,Delivered,4.1,true,Missing quantity
+ORD008,C108,Simran Kaur,27,Pizza Corner,Delhi,650.00,2,,Delivered,4.6,true,Missing delivery fee
+ORD009,C109,Arjun Malhotra,,Food Hub,Delhi,500.00,1,40,Delivered,4.3,true,Missing age
+ORD010,C110,Pooja Jain,24,Spice Kitchen,delhi,850.00,2,50,Cancelled,2.5,false,Cancelled order
+ORD011,C111,Karan Singh,19,Burger Point,Mumbai,250.00,-2,30,Delivered,4.0,true,Invalid quantity
+ORD012,C112,Megha Sharma,36,Pizza Corner,Delhi,-100.00,1,40,Delivered,3.9,true,Invalid food price
+ORD013,C113,Aditya Verma,45,Food Hub, Delhi ,550.00,2,40,Delivered,,true,Missing rating
+ORD014,C114,Riya Kapoor,17,Spice Kitchen,Mumbai,700.00,1,50,Delivered,4.7,true,Underage customer
+ORD015,C115,Nitin Kumar,52,Burger Point,Bangalore,400.00,2,35,Delivered,4.2,true,Normal order
+ORD016,C116,Shreya Gupta,30,Pizza Corner,DELHI,invalid,1,45,Preparing,4.0,true,Invalid price
+ORD017,C117,Manish Yadav,39,Food Hub,Mumbai,600.00,3,40,Delivered,4.5,true,Normal order
+ORD018,C118,Kavita Sharma,26,Spice Kitchen,Delhi,750.00,,50,Delivered,4.8,true,Missing quantity
+ORD019,C119,Saurabh Jain,33,Burger Point, Mumbai ,300.00,2,30,Delivered,4.1,true,City formatting issue
+ORD020,C120,Divya Singh,41,Pizza Corner,Delhi,900.00,1,45,Delivered,6.0,true,Invalid rating
+2. Your Task
+
+Build a PySpark program that performs the complete data extraction and cleaning pipeline.
+
+Your solution should contain the following stages.
+
+Part A — Data Extraction
+Task 1
+
+Create a SparkSession.
+
+Application name: FoodDeliveryDataCleaning
+Task 2
+
+Read food_delivery_orders.csv into a PySpark DataFrame.
+
+Use:
+
+Header
+Schema inference
+Task 3
+
+Display the first few records.
+
+Task 4
+
+Display the DataFrame schema using:
+
+printSchema()
+Task 5
+
+Display the total number of records in the raw dataset.
+
+Part B — Data Inspection
+
+Before cleaning the data, identify potential data-quality problems.
+
+Task 6
+
+Identify which columns contain missing values.
+
+Task 7
+
+Identify records where:
+
+age is missing
+quantity is missing
+delivery_fee is missing
+customer_rating is missing
+Task 8
+
+Identify records containing invalid values such as:
+
+Negative age
+Negative quantity
+Negative food price
+Rating greater than 5
+Part C — Column Selection
+Task 9
+
+Create a DataFrame containing only:
+
+order_id
+customer_id
+customer_name
+restaurant
+city
+food_price
+quantity
+delivery_fee
+order_status
+customer_rating
+
+Do not include:
+
+internal_note
+Part D — Data Type Cleaning
+Task 10
+
+Ensure that the following columns have appropriate data types:
+
+age            → Integer
+food_price     → Double
+quantity       → Integer
+delivery_fee   → Double
+customer_rating → Double
+
+Use cast() where required.
+
+After casting, display the schema again.
+
+Part E — Handling Invalid Data
+Task 11
+
+Remove records where:
+
+age < 0
+Task 12
+
+Remove records where:
+
+food_price <= 0
+Task 13
+
+Remove records where:
+
+quantity <= 0
+Task 14
+
+Remove records where:
+
+customer_rating > 5
+Task 15
+
+Decide how you will handle customers whose age is below 18.
+
+Implement your decision in PySpark.
+
+Write a short comment in your code explaining why you made this decision.
+
+Part F — Handling Missing Values
+Task 16
+
+The business team has provided the following rules:
+
+Column	Business Rule
+quantity	Missing quantity should be treated as 1
+delivery_fee	Missing delivery fee should be treated as 0
+customer_rating	Missing rating should remain NULL
+age	Missing age should remain NULL
+
+Implement these rules using PySpark.
+
+Part G — Data Standardization
+Task 17
+
+The city column contains values such as:
+
+Delhi
+delhi
+DELHI
+ Delhi 
+MUMBAI
+Mumbai
+ Mumbai 
+Bangalore
+ BANGALORE
+
+Standardize the city names so that:
+
+Delhi
+delhi
+DELHI
+ Delhi
+
+all become:
+
+DELHI
+
+Similarly standardize:
+
+Mumbai → MUMBAI
+Bangalore → BANGALORE
+
+Use appropriate PySpark string functions.
+
+Part H — Column Renaming
+Task 18
+
+Rename:
+
+food_price
+
+to:
+
+item_price
+
+Use:
+
+withColumnRenamed()
+Part I — Derived Columns
+Task 19
+
+Create a new column:
+
+food_amount
+
+using:
+
+item_price × quantity
+Task 20
+
+Create another column:
+
+total_amount
+
+using:
+
+food_amount + delivery_fee
+
+For example:
+
+item_price = 500
+quantity = 2
+delivery_fee = 40
+
+food_amount = 1000
+total_amount = 1040
+Part J — Filtering
+Task 21
+
+Create a DataFrame containing only orders whose:
+
+order_status = Delivered
+Task 22
+
+Create another DataFrame containing delivered orders where:
+
+total_amount > 1000
+Task 23
+
+Create another DataFrame containing active customers only.
+
+Use:
+
+is_active = true
+Part K — Final DataFrame
+Task 24
+
+Your final cleaned DataFrame should contain these columns:
+
+order_id
+customer_id
+customer_name
+age
+restaurant
+city
+item_price
+quantity
+delivery_fee
+order_status
+customer_rating
+is_active
+food_amount
+total_amount
+
+The following column should not exist:
+
+internal_note
+Part L — Data Quality Validation
+
+Before saving the data, perform the following checks.
+
+Task 25
+
+Display the final schema.
+
+Task 26
+
+Display the total number of records after cleaning.
+
+Compare:
+
+Raw record count
+vs
+Cleaned record count
+Task 27
+
+Verify that no records have:
+
+item_price <= 0
+Task 28
+
+Verify that no records have:
+
+quantity <= 0
+Task 29
+
+Verify that no ratings are greater than:
+
+5
+Task 30
+
+Display:
+
+order_id
+customer_name
+city
+item_price
+quantity
+food_amount
+delivery_fee
+total_amount
+
+to manually verify that the calculations are correct.
