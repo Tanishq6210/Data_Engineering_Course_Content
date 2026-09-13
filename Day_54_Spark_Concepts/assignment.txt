@@ -1,0 +1,25 @@
+Scenario: Hospital Patient Records
+
+A hospital receives patient records from different departments. Your task is to build a PySpark application that reads, analyzes, and stores these records using appropriate schemas and file formats.
+
+Dataset: patients.csv
+patient_id,patient_name,age,temperature,is_admitted,department
+1001,Rohit,45,98.6,true,Cardiology
+1002,Ananya,32,99.1,false,Neurology
+1003,Varun,67,101.4,true,Cardiology
+1004,Meera,29,98.2,false,Orthopedics
+1005,Karan,54,100.8,true,Neurology
+1006,Isha,41,97.9,false,General
+1007,Arjun,38,99.6,true,Orthopedics
+1008,Diya,26,98.4,false,General
+
+Questions
+1. Create a SparkSession for the hospital data processing application.
+2. Read patients.csv without using schema inference. Display the DataFrame and its schema.
+3. Read the same CSV using inferSchema=True. Display the DataFrame and its schema.
+4. Compare the schemas obtained in Questions 2 and 3. What differences do you observe?
+5. Create an explicit StructType schema for all six columns in the dataset.
+6. Read the CSV using your explicit schema and display the data and schema.
+7. Explain why a hospital data-processing system might prefer an explicit schema instead of relying completely on schema inference.
+8. Create a patients.json file containing at least 5 records from the CSV dataset.
+9. Read the JSON file using Spark and display its data and schema

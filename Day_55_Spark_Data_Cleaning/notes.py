@@ -81,6 +81,7 @@ df.filter(~col("is_active") == True)
 # 4.2 - Modify an existing column
 
 df = df.withColumn("expense_amount", col("expense_amount") * 2)
+df = df.withColumn("total_amount", col("price") * col("quantity"))
 
 # Type Conversion / cast()
 df.withColumn("age", col("age").cast(IntegerType))

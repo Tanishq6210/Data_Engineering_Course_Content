@@ -1,0 +1,5 @@
+customer_id,name,age,salary,is_active
+101,Amit,25,55000.0,true
+102,Priya,29,72000.0,true
+103,Rahul,31.5,68000.0,true
+104,Neha,27,61000.0,false
