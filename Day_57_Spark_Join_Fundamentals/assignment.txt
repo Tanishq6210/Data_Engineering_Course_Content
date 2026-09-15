@@ -1,0 +1,374 @@
+============================================================
+CLASS 7A — SPARK JOINS FUNDAMENTALS
+HOMEWORK ASSIGNMENT
+============================================================
+
+Scenario:
+You are working as a Data Engineer for a company that manages
+employees, departments, projects, and office locations.
+
+The company stores this information in separate DataFrames.
+Your task is to use PySpark JOIN operations to combine the
+datasets and answer the following business questions.
+
+Concepts allowed:
+- INNER JOIN
+- LEFT JOIN
+- RIGHT JOIN
+- FULL OUTER JOIN
+- Join Conditions
+- Aliasing
+- Handling Duplicate Columns
+- Multiple Joins
+
+Do NOT use concepts that have not been taught yet.
+
+
+# ============================================================
+# DATASET
+# ============================================================
+
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder \
+    .appName("Class7A_Join_Homework") \
+    .getOrCreate()
+
+
+# ------------------------------------------------------------
+# EMPLOYEES
+# ------------------------------------------------------------
+
+employees_data = [
+    (101, "Rahul", 10, 85000),
+    (102, "Priya", 20, 92000),
+    (103, "Amit", 10, 78000),
+    (104, "Neha", 30, 70000),
+    (105, "Arjun", 40, 88000),
+    (106, "Sneha", 50, 76000),
+    (107, "Vikram", 60, 81000)
+]
+
+employees = spark.createDataFrame(
+    employees_data,
+    ["employee_id", "employee_name", "department_id", "salary"]
+)
+
+
+# ------------------------------------------------------------
+# DEPARTMENTS
+# ------------------------------------------------------------
+
+departments_data = [
+    (10, "Engineering"),
+    (20, "Data Science"),
+    (30, "Human Resources"),
+    (40, "Finance"),
+    (50, "Marketing"),
+    (70, "Legal")
+]
+
+departments = spark.createDataFrame(
+    departments_data,
+    ["department_id", "department_name"]
+)
+
+
+# ------------------------------------------------------------
+# PROJECTS
+# ------------------------------------------------------------
+
+projects_data = [
+    (501, "Cloud Migration", 101),
+    (502, "Customer Analytics", 102),
+    (503, "Payment Gateway", 103),
+    (504, "HR Automation", 104),
+    (505, "Financial Dashboard", 105),
+    (506, "Marketing Campaign", 108)
+]
+
+projects = spark.createDataFrame(
+    projects_data,
+    ["project_id", "project_name", "employee_id"]
+)
+
+
+# ------------------------------------------------------------
+# OFFICES
+# ------------------------------------------------------------
+
+offices_data = [
+    (10, "Bangalore"),
+    (20, "Mumbai"),
+    (30, "Delhi"),
+    (40, "Hyderabad"),
+    (50, "Pune"),
+    (80, "Chennai")
+]
+
+offices = spark.createDataFrame(
+    offices_data,
+    ["department_id", "office_city"]
+)
+
+
+# Display the DataFrames
+
+employees.show()
+departments.show()
+projects.show()
+offices.show()
+
+
+============================================================
+QUESTIONS
+============================================================
+
+
+Q1. EMPLOYEE-DEPARTMENT INNER JOIN
+
+Perform an INNER JOIN between employees and departments
+using department_id.
+
+Display:
+
+employee_id
+employee_name
+department_name
+salary
+
+Question:
+Which employees have a matching department?
+
+
+------------------------------------------------------------
+
+
+Q2. ALL EMPLOYEES WITH DEPARTMENT INFORMATION
+
+Perform a LEFT JOIN between employees and departments.
+
+Display:
+
+employee_name
+department_id
+department_name
+
+Make sure every employee is present in the result.
+
+Question:
+What happens to the department_name for an employee whose
+department does not exist in the departments DataFrame?
+
+
+------------------------------------------------------------
+
+
+Q3. ALL DEPARTMENTS
+
+Perform a RIGHT JOIN between employees and departments.
+
+Display:
+
+employee_id
+employee_name
+department_id
+department_name
+
+Make sure every department is present.
+
+Question:
+Which department does not currently have a matching employee?
+
+
+------------------------------------------------------------
+
+
+Q4. FULL OUTER JOIN — EMPLOYEES AND DEPARTMENTS
+
+Perform a FULL OUTER JOIN between employees and departments
+using department_id.
+
+Display:
+
+employee_name
+department_name
+department_id
+
+Identify:
+
+1. Employees whose department does not exist.
+2. Departments that do not have a matching employee.
+
+
+------------------------------------------------------------
+
+
+Q5. ALIASING
+
+Create aliases for employees and departments:
+
+e = employees.alias("e")
+d = departments.alias("d")
+
+Perform an INNER JOIN using the aliases.
+
+Display:
+
+e.employee_id
+e.employee_name
+d.department_name
+e.salary
+
+Requirement:
+Use aliases when referencing the columns.
+
+
+------------------------------------------------------------
+
+
+Q6. DUPLICATE COLUMN HANDLING
+
+Join employees and departments using department_id.
+
+Create a clean DataFrame containing ONLY:
+
+employee_id
+employee_name
+department_name
+salary
+
+The final DataFrame should NOT contain two department_id
+columns.
+
+Hint:
+Use aliases and select only the required columns.
+
+
+------------------------------------------------------------
+
+
+Q7. MULTIPLE JOINS
+
+Use the following relationship:
+
+employees
+     ↓
+  projects
+
+Join the employees and projects DataFrames using employee_id.
+
+Display:
+
+employee_name
+project_id
+project_name
+
+Question:
+Which employees are assigned to projects?
+
+
+------------------------------------------------------------
+
+
+Q8. THREE-TABLE JOIN
+
+Create a report using:
+
+employees
+     ↓
+departments
+     ↓
+projects
+
+Use appropriate JOIN conditions.
+
+Display:
+
+employee_name
+department_name
+project_name
+salary
+
+Use aliases to make the join conditions clear.
+
+
+------------------------------------------------------------
+
+
+Q9. DEPARTMENT AND OFFICE INFORMATION
+
+Join departments with offices using department_id.
+
+Display:
+
+department_id
+department_name
+office_city
+
+Use a LEFT JOIN so that every department is included,
+even if it does not have a corresponding office.
+
+Question:
+Which department does not have an office listed?
+
+
+============================================================
+SECTION B — JOINS + AGGREGATIONS
+============================================================
+
+Use the same Employees, Departments, Projects and Offices
+DataFrames provided above.
+
+
+QUESTION 11 — Department-wise Employee Count
+
+Join the employees and departments DataFrames and calculate
+the number of employees working in each department.
+
+Requirements:
+- Use an INNER JOIN.
+- Join using department_id.
+- Display:
+    department_name
+    employee_count
+- Use GROUP BY.
+- Use COUNT() to calculate the number of employees.
+- Sort the result by employee_count in descending order.
+
+
+
+------------------------------------------------------------
+
+QUESTION 12 — Department-wise Total Salary
+
+Join the employees and departments DataFrames and calculate
+the total salary paid by each department.
+
+Requirements:
+- Use an INNER JOIN.
+- Join using department_id.
+- Display:
+    department_name
+    total_salary
+- Use GROUP BY.
+- Use SUM() to calculate total salary.
+- Sort the result by total_salary in descending order.
+
+
+------------------------------------------------------------
+
+QUESTION 13 — Department-wise Average Salary
+
+Join the employees and departments DataFrames and calculate
+the average salary of employees in each department.
+
+Requirements:
+- Use an INNER JOIN.
+- Join using department_id.
+- Display:
+    department_name
+    average_salary
+- Use GROUP BY.
+- Use AVG() to calculate average salary.
+- Sort the result by average_salary in descending order.

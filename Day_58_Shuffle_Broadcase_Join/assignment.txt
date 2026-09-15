@@ -1,0 +1,87 @@
+Homework — Shuffle & Broadcast Joins
+Scenario
+
+You are working as a Data Engineer for an e-commerce company.
+
+You have two datasets:
+
+orders → large transaction dataset
+customers → relatively small customer lookup dataset
+
+Your task is to join them and investigate how Spark executes the join.
+
+Dataset
+orders_data = [
+    (101, "C1", 500),
+    (102, "C2", 800),
+    (103, "C1", 300),
+    (104, "C3", 700),
+    (105, "C2", 900),
+    (106, "C4", 400),
+    (107, "C1", 600),
+    (108, "C3", 350),
+    (109, "C5", 1200),
+    (110, "C2", 450)
+]
+
+customers_data = [
+    ("C1", "Rahul", "Bangalore"),
+    ("C2", "Priya", "Delhi"),
+    ("C3", "Amit", "Mumbai"),
+    ("C4", "Sneha", "Pune"),
+    ("C5", "Arjun", "Chennai")
+]
+
+orders = spark.createDataFrame(
+    orders_data,
+    ["order_id", "customer_id", "amount"]
+)
+
+customers = spark.createDataFrame(
+    customers_data,
+    ["customer_id", "name", "city"]
+)
+Tasks
+Task 1 — Perform a Normal Join
+
+Join orders and customers using customer_id.
+
+The final output should contain:
+
+order_id
+customer_id
+amount
+name
+city
+
+Display the result.
+
+Task 2 — Inspect the Execution Plan
+
+Use:
+
+.explain("formatted")
+
+on your normal join.
+
+Students should identify:
+
+What physical join strategy did Spark choose?
+Is there an Exchange in the plan?
+What does Exchange indicate?
+Which DataFrame is being read on each side of the join?
+
+
+Task 3 — Perform a Broadcast Join
+
+Now perform the same join using:
+
+broadcast(customers)
+
+For example:
+
+from pyspark.sql.functions import broadcast
+
+Then display the result.
+
+Important: The output of Task 1 and Task 3 should be logically the same.
