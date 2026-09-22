@@ -1,0 +1,58 @@
+[
+  {
+    "event_id": "E001",
+    "user_id": 101,
+    "event_timestamp": "2026-09-20T10:30:00",
+    "user": {
+      "name": "Rahul",
+      "city": "Delhi"
+    },
+    "device": {
+      "type": "mobile",
+      "os": "Android"
+    },
+    "tags": ["electronics", "mobile"],
+    "metadata": {
+      "browser": "Chrome",
+      "app_version": "5.1"
+    },
+    "events": [
+      {
+        "event_type": "view",
+        "product_id": "P101",
+        "price": 25000
+      },
+      {
+        "event_type": "cart",
+        "product_id": "P205",
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "event_id": "E002",
+    "user_id": 102,
+    "event_timestamp": "2026-09-20T11:15:00",
+    "user": {
+      "name": "Priya",
+      "city": "Mumbai"
+    },
+    "device": {
+      "type": "laptop",
+      "os": "Windows"
+    },
+    "tags": ["electronics"],
+    "metadata": {
+      "browser": "Edge",
+      "app_version": "5.2",
+      "location": "East-Europe"
+    },
+    "events": [
+      {
+        "event_type": "purchase",
+        "product_id": "P301",
+        "price": 70000
+      }
+    ]
+  }
+]

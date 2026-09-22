@@ -1,0 +1,233 @@
+Class 9 Assignment — Complex JSON & End-to-End PySpark
+Scenario
+
+You are working as a Data Engineer for a food-delivery application. The application generates nested JSON whenever a customer places an order.
+
+Create a file named restaurant_orders.json with the following data:
+
+[
+  {
+    "order_id": "O101",
+    "customer": {
+      "id": 201,
+      "name": "Aman",
+      "city": "Delhi"
+    },
+    "order_timestamp": "2026-09-20T12:30:00",
+    "restaurant": {
+      "id": "R01",
+      "name": "Pizza Hub"
+    },
+    "items": [
+      {
+        "item_id": "I101",
+        "item_name": "Farmhouse Pizza",
+        "category": "Pizza",
+        "price": 450,
+        "quantity": 2
+      },
+      {
+        "item_id": "I102",
+        "item_name": "Garlic Bread",
+        "category": "Sides",
+        "price": 180,
+        "quantity": 1
+      }
+    ],
+    "payment": {
+      "method": "UPI",
+      "status": "SUCCESS"
+    },
+    "tags": ["pizza", "dinner"],
+    "metadata": {
+      "device": "Android",
+      "app_version": "6.1"
+    }
+  },
+  {
+    "order_id": "O102",
+    "customer": {
+      "id": 202,
+      "name": "Priya",
+      "city": "Mumbai"
+    },
+    "order_timestamp": "2026-09-20T19:15:00",
+    "restaurant": {
+      "id": "R02",
+      "name": "Burger Point"
+    },
+    "items": [
+      {
+        "item_id": "I201",
+        "item_name": "Veg Burger",
+        "category": "Burger",
+        "price": 250,
+        "quantity": 2
+      },
+      {
+        "item_id": "I202",
+        "item_name": "Fries",
+        "category": "Sides",
+        "price": 120,
+        "quantity": 1
+      }
+    ],
+    "payment": {
+      "method": "CARD",
+      "status": "SUCCESS"
+    },
+    "tags": ["burger", "fast-food"],
+    "metadata": {
+      "device": "iPhone",
+      "app_version": "6.2"
+    }
+  },
+  {
+    "order_id": "O103",
+    "customer": {
+      "id": 203,
+      "name": "Ravi",
+      "city": "Bengaluru"
+    },
+    "order_timestamp": "2026-09-21T13:45:00",
+    "restaurant": {
+      "id": "R01",
+      "name": "Pizza Hub"
+    },
+    "items": [
+      {
+        "item_id": "I101",
+        "item_name": "Farmhouse Pizza",
+        "category": "Pizza",
+        "price": 450,
+        "quantity": 1
+      },
+      {
+        "item_id": "I103",
+        "item_name": "Coke",
+        "category": "Beverage",
+        "price": 80,
+        "quantity": 2
+      }
+    ],
+    "payment": {
+      "method": "UPI",
+      "status": "SUCCESS"
+    },
+    "tags": ["pizza", "beverage"],
+    "metadata": {
+      "device": "Android",
+      "app_version": "6.1"
+    }
+  },
+  {
+    "order_id": "O104",
+    "customer": {
+      "id": 204,
+      "name": "Sneha",
+      "city": "Hyderabad"
+    },
+    "order_timestamp": "2026-09-21T20:10:00",
+    "restaurant": {
+      "id": "R03",
+      "name": "Biryani House"
+    },
+    "items": [
+      {
+        "item_id": "I301",
+        "item_name": "Chicken Biryani",
+        "category": "Main Course",
+        "price": 350,
+        "quantity": 2
+      }
+    ],
+    "payment": {
+      "method": "CASH",
+      "status": "SUCCESS"
+    },
+    "tags": ["biryani", "dinner"],
+    "metadata": {
+      "device": "Android",
+      "app_version": "6.0"
+    }
+  },
+  {
+    "order_id": "O105",
+    "customer": {
+      "id": 205,
+      "name": "Karan",
+      "city": "Pune"
+    },
+    "order_timestamp": "2026-09-22T14:20:00",
+    "restaurant": {
+      "id": "R02",
+      "name": "Burger Point"
+    },
+    "items": [
+      {
+        "item_id": "I201",
+        "item_name": "Veg Burger",
+        "category": "Burger",
+        "price": 250,
+        "quantity": 1
+      },
+      {
+        "item_id": "I202",
+        "item_name": "Fries",
+        "category": "Sides",
+        "price": 120,
+        "quantity": 2
+      }
+    ],
+    "payment": {
+      "method": "CARD",
+      "status": "FAILED"
+    },
+    "tags": ["burger"],
+    "metadata": {
+      "device": "iPhone",
+      "app_version": "6.2"
+    }
+  }
+]
+Tasks
+
+Students should complete the following 10 tasks using PySpark:
+
+Read the JSON file into a DataFrame and use printSchema() to identify the StructType, ArrayType, and MapType fields.
+Flatten the nested structures and create columns for:
+order_id
+customer_id
+customer_name
+city
+restaurant_name
+payment_method
+payment_status
+Use array_contains() to find orders having the "dinner" tag and use size() to create a tag_count column.
+Use element_at() to extract the device from the metadata map.
+Use explode() on the items array so that each food item becomes a separate row. Extract:
+item_id
+item_name
+category
+price
+quantity
+Convert order_timestamp into a proper timestamp and create:
+order_date
+order_year
+order_month
+order_day
+Create a new column:
+item_total = price × quantity
+
+Then remove records where item_total <= 0 or required fields are null.
+
+Keep only orders where:
+payment_status = SUCCESS
+
+Then calculate total revenue by restaurant and order date.
+
+Partition the final output by order_date and save it as Parquet.
+Use explain(True) on your final aggregation and identify:
+Where the shuffle occurs.
+Which operation causes the aggregation.
+Why Spark may need multiple stages for this pipeline.

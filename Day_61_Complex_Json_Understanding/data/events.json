@@ -1,0 +1,26 @@
+{
+  "event_id": "E001",
+  "user_id": 101,
+  "event_timestamp": "2026-09-20T10:30:00",
+  "user": {
+    "name": "Rahul",
+    "city": "Delhi"
+  },
+  "device": {
+    "type": "mobile",
+    "os": "Android"
+  },
+  "tags": ["electronics", "mobile"],
+  "events": [
+    {
+      "event_type": "view",
+      "product_id": "P101",
+      "price": 25000
+    },
+    {
+      "event_type": "cart",
+      "product_id": "P205",
+      "price": 45000
+    }
+  ]
+}
