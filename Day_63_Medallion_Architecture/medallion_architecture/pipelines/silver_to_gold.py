@@ -6,7 +6,7 @@ gold_df = (
     silver_df.groupby("category")
     .agg(
         total_revenue = ("total_amount", "sum"),
-        total_orders = ("order_id", "count")
+        # total_orders = ("order_id", "count")
     ).reset_index()
 )
 

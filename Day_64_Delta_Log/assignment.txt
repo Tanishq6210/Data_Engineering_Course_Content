@@ -1,0 +1,23 @@
+CLASS 12 ASSIGNMENT — DELTA LAKE, ACID & TRANSACTION LOG
+
+Scenario:
+An e-commerce company stores customer order data in a data lake. The data is initially stored as Parquet files. Multiple data pipelines update and append data to the same dataset, so the company wants reliable transactions and protection against partial writes.
+
+Complete the following tasks in one flow:
+
+1. Create a small DataFrame containing at least 5 customer orders and write it as a Parquet table. Inspect the directory and identify the actual data files.
+
+2. Write the same DataFrame as a Delta table. Inspect the Delta table directory and identify:
+   - The Parquet data files
+   - The _delta_log directory
+   - The JSON transaction-log files
+
+3. Open the first JSON file inside _delta_log and identify what the following actions represent:
+   - commitInfo
+   - metaData
+   - protocol
+   - add
+
+4. Append at least 2 new orders to the Delta table. Inspect _delta_log again and identify the new JSON version created by the transaction.
+
+5. Explain why the latest JSON file alone is not sufficient to reconstruct the complete current state of the Delta table. Use your initial write and append operation as an example.
