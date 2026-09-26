@@ -1,0 +1,10 @@
+,order_id,customer_id,product_id,category,quantity,price,order_date
+0,1001,C001,P101,Electronics,2.0,50000,2026-09-20
+1,1002,C002,P102,Electronics,1.0,75000,2026-09-20
+2,1003,C003,P103,Furniture,3.0,12000,2026-09-21
+3,1004,C001,P104,Accessories,2.0,1500,2026-09-21
+4,1005,C004,P101,Electronics,1.0,50000,2026-09-22
+5,1006,C005,P105,Furniture,,25000,2026-09-22
+6,1007,C002,P102,Electronics,1.0,75000,2026-09-23
+7,1007,C002,P102,Electronics,1.0,75000,2026-09-23
+8,1008,C006,P106,Accessories,-2.0,1000,2026-09-23

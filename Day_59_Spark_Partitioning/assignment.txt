@@ -1,0 +1,11 @@
+Assignment – Spark Partitioning & Data Distribution: 
+
+Create a PySpark DataFrame using spark.range(0, 1000000). Check the initial number of partitions using getNumPartitions(). 
+
+Create separate DataFrames using repartition(8), repartition(16), repartition(2), and coalesce(2), and print the partition count after each operation. 
+
+Trigger an action such as count() on each DataFrame and open the Spark UI to observe the stages and shuffle activity. 
+
+Compare the execution of repartition(2) and coalesce(2) and note the differences you observe. 
+
+Finally, create a DataFrame with a column such as customer_id and try repartition(8, "customer_id"), then inspect the resulting partition count and Spark UI.

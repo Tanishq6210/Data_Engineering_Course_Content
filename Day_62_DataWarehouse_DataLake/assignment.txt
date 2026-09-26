@@ -1,0 +1,37 @@
+42. Homework / Assignment
+
+Give them this single scenario rather than many theoretical questions.
+
+Assignment: Design a Data Platform
+Company: FoodExpress
+
+FoodExpress receives:
+
+1. Orders → MySQL
+2. Customer data → JSON APIs
+3. Restaurant data → CSV
+4. Delivery GPS events → JSON
+5. Application logs → Text
+6. Customer reviews → Text
+
+They want to build:
+
+Daily sales dashboards
+Customer analytics
+Delivery performance analysis
+ML-based delivery-time prediction
+Students need to submit:
+Should FoodExpress use a Data Warehouse, Data Lake or Lakehouse?
+Justify the choice.
+Design:
+raw/
+processed/
+curated/
+Identify which data is:
+Structured
+Semi-structured
+Unstructured
+Explain where Spark would fit into the architecture.
+Explain why the raw layer should be preserved.
+Explain one potential Data Swamp problem.
+Explain how the chosen architecture addresses the company's requirements.
