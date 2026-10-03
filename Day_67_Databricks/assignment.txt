@@ -1,0 +1,13 @@
+Task 1 — Databricks Workspace
+Create a Databricks folder named Class14_Assignment and create a notebook inside it.
+In the notebook:
+- Create a small DataFrame with 5 customer records.
+- Display the DataFrame.
+- Print its schema.
+Task 2 — PySpark + SQL
+Using the same DataFrame:
+1. Filter customers whose amount is greater than 5000.
+2. Create a temporary view named customers.
+3. Write a SQL query to calculate the total amount.
+Task 3 — Delta Output
+Write the DataFrame to a Delta table/path and read it back using Spark.

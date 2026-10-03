@@ -1,0 +1,53 @@
+Class 13A Assignment — Delta UPDATE, DELETE & MERGE
+
+Input Data
+Create the initial Delta table using the following data:
+
+customers = [
+    (101, "Rahul", "Delhi", 5000, "ACTIVE"),
+    (102, "Priya", "Mumbai", 7000, "ACTIVE"),
+    (103, "Amit", "Bangalore", 3000, "ACTIVE"),
+    (104, "Neha", "Pune", 9000, "ACTIVE")
+]
+
+columns = [
+    "customer_id",
+    "name",
+    "city",
+    "balance",
+    "status"
+]
+
+df = spark.createDataFrame(customers, columns)
+
+df.write \
+    .format("delta") \
+    .mode("overwrite") \
+    .save("/output/customers_assignment")
+
+Questions
+1. UPDATE
+Read the Delta table and update Priya's balance from 7000 to 8500 using Delta Lake's UPDATE operation.
+Verify the result by displaying the table.
+2. DELETE
+Delete the customer whose customer_id is 104 using Delta Lake's DELETE operation.
+Display the table after deletion.
+
+3. MERGE / UPSERT
+Assume the following data has arrived from the CRM system today:
+updates = [
+    (102, "Priya", "Mumbai", 9500, "ACTIVE"),
+    (103, "Amit", "Hyderabad", 3500, "ACTIVE"),
+    (105, "Karan", "Delhi", 6000, "ACTIVE")
+]
+
+updates_df = spark.createDataFrame(updates, columns)
+
+updates_df.show()
+
+Use Delta MERGE to synchronize this incoming data with the existing customers_assignment Delta table.
+Your MERGE should:
+- Update the existing customer when customer_id matches.
+- Insert the customer when customer_id does not exist.
+- Use customer_id as the matching key.
+Finally, display the resulting Delta table.

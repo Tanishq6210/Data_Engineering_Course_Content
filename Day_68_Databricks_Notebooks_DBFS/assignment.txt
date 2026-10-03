@@ -1,0 +1,36 @@
+Class 15 Assignment — Employee Attendance Pipeline
+Scenario
+A company receives a daily CSV containing employee attendance records. Build a parameterized Databricks notebook that reads the file, cleans invalid records, calculates working hours, uses SQL for analysis, and stores the final dataset as Delta.
+
+Input Data — employee_attendance.csv
+attendance_id,employee_id,department,attendance_date,check_in,check_out
+A001,E101,Engineering,2026-09-28,09:15,18:20
+A002,E102,HR,2026-09-28,09:05,17:45
+A003,E103,Finance,2026-09-28,10:10,19:00
+A004,E104,Engineering,2026-09-28,09:30,18:15
+A005,E105,Marketing,2026-09-28,09:45,17:30
+A006,E106,Finance,2026-09-28,09:00,17:00
+A007,E107,Engineering,2026-09-28,08:50,18:10
+A008,E108,HR,2026-09-28,09:20,17:40
+
+Tasks
+Create a professionally structured Databricks notebook with:
+1. Configuration
+   - Create an input_path widget.
+   - Read the CSV using the widget value.
+2. Ingestion
+   - Read the attendance data into a DataFrame.
+   - Display the data and schema.
+3. Transformation
+   - Convert attendance_date to a proper date.
+   - Calculate the employee's working hours from check_in and check_out.
+   - Add a column attendance_status:
+     - Full Day if working hours ≥ 8
+     - Short Day if working hours < 8
+4. SQL Analysis
+   - Create a temporary view named attendance.
+   - Using Spark SQL, calculate:
+     - Average working hours by department.
+     - Number of employees with Full Day attendance by department.
+5. Output
+   - Write the transformed DataFrame as a Delta dataset.

@@ -1,0 +1,9 @@
+order_id,customer_id,product,quantity,price
+101,C101,Laptop,1,70000
+102,C102,Mouse,2,500
+103,C101,Keyboard,1,1500
+104,C103,Monitor,2,12000
+105,C102,Headphones,3,2000
+106,C104,Mouse,-1,500
+107,C105,Laptop,1,65000
+108,C103,Keyboard,2,1500

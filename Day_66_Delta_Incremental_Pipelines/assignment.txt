@@ -1,0 +1,88 @@
+Class 13B Assignment — Delta Incremental Pipeline & Time Travel
+Scenario: Employee Records Pipeline
+A company maintains an employee Delta table. Every day, the HR system sends only new and changed employee records.
+Your task is to build an incremental Delta pipeline that processes these changes and demonstrates MERGE, table history, Time Travel, and recovery.
+
+Input Data
+Initial Employee Data
+Create the initial Delta table using:
+
+initial_data = [
+    (201, "Aarav", "Engineering", "Bangalore", 70000),
+    (202, "Meera", "Finance", "Mumbai", 65000),
+    (203, "Rohan", "HR", "Delhi", 60000),
+    (204, "Ishita", "Marketing", "Pune", 55000)
+]
+
+columns = [
+    "employee_id",
+    "name",
+    "department",
+    "city",
+    "salary"
+]
+
+initial_df = spark.createDataFrame(initial_data, columns)
+
+initial_df.write \
+    .format("delta") \
+    .mode("overwrite") \
+    .save("/output/employees_delta")
+
+    
+    
+Daily Incremental Data
+Use the following data as the next day's HR update:
+incremental_data = [
+    (201, "Aarav", "Engineering", "Hyderabad", 75000),
+    (205, "Kavya", "Engineering", "Chennai", 72000),
+    (206, "Dev", "Sales", "Bangalore", 58000)
+]
+
+incremental_df = spark.createDataFrame(
+    incremental_data,
+    columns
+)
+
+incremental_df.createOrReplaceTempView("employee_updates")
+
+Here:
+- Employee 201 is an existing employee with changed information
+- Employees 205 and 206 are new employees
+
+Tasks
+1. Create the Delta Table
+Create the initial employees_delta table using the given input data and verify its contents.
+2. Perform an Incremental MERGE
+Use MERGE to:
+- Update employee 201
+- Insert employees 205 and 206
+- Match records using employee_id
+Do not overwrite/reload the complete table.
+3. Check Table History
+Use:
+DESCRIBE HISTORY delta.`/output/employees_delta`;
+
+Identify:
+- The version created by the initial write
+- The version created by the MERGE
+- The operation performed for each version
+4. Time Travel
+Use version-based Time Travel to read the table before the incremental MERGE.
+Verify that:
+- Employee 201 has the original information
+- Employees 205 and 206 do not exist in that version
+
+5. Simulate a Pipeline Mistake
+Assume a developer accidentally executes:
+DELETE FROM delta.`/output/employees_delta`
+WHERE department = 'Finance';
+Check the current table and identify which employee was incorrectly removed.
+
+6. Recover the Data
+Using:
+1. DESCRIBE HISTORY
+2. Time Travel
+3. RESTORE
+Recover the table to the version immediately before the accidental DELETE.
+Finally, verify that employee 202 is present again.
