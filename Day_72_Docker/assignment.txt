@@ -1,0 +1,39 @@
+Class 19 Assignment — Docker & Containerization
+Scenario: Employee Attendance Processor
+A company has a Python script that processes employee attendance data and calculates the total working hours.
+Create a small Dockerized Python application that:
+1. Creates a DataFrame with the following data:
+Employee	Days Present	Hours per Day
+Amit	20	8
+Neha	18	8
+Rahul	22	7
+Priya	19	8
+
+
+2. Calculates a new column:
+total_hours = days_present × hours_per_day
+
+3. Prints the processed data and total hours worked by all employees.
+4. Create a requirements.txt file containing the required Python dependency.
+5. Create a Dockerfile that:
+   - Uses a Python base image
+   - Sets a working directory
+   - Copies the required files
+   - Installs dependencies
+   - Runs the Python script using CMD
+6. Build the Docker image and run it as a container.
+7. Pass an environment variable:
+ENVIRONMENT=production
+
+and print its value from the Python script.
+Expected Deliverables
+attendance-docker/
+├── attendance.py
+├── requirements.txt
+└── Dockerfile
+
+Students should submit the three files + screenshot of the Docker image being built and the container output.
+
+
+
+DBFS provides file access/storage functionality, while Delta provides a reliable table / storage format

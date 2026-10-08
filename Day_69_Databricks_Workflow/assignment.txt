@@ -1,0 +1,131 @@
+Class 16 Assignment — Databricks Jobs & Workflow Automation
+Scenario: IoT Device Monitoring Pipeline
+A company operates IoT sensors across its warehouses. Every day, sensor data is received as a CSV file. The company wants an automated Databricks workflow that processes this data and produces a summary of sensor activity.
+This is intentionally different from the retail orders → transformation → Gold revenue scenario used in class.
+
+Objective
+
+Build a 3-task Databricks Job:
+Raw Sensor CSV
+      ↓
+Task 1: Ingestion
+      ↓
+Bronze Delta Table
+      ↓
+Task 2: Transformation
+      ↓
+Silver Delta Table
+      ↓
+Task 3: Gold Aggregation
+      ↓
+Daily Sensor Report
+
+The Job should also include:
+- Task dependencies
+- A parameter for process_date
+- Scheduling configuration
+- Job monitoring
+- Failure and recovery demonstration
+Input Data
+Create a file named:
+iot_sensor_data.csv
+sensor_id,warehouse_id,sensor_type,temperature,humidity,status,reading_date
+S101,W01,Temperature,24.5,61,OK,2026-10-03
+S102,W01,Temperature,28.9,67,OK,2026-10-03
+S103,W02,Temperature,35.7,72,WARNING,2026-10-03
+S104,W02,Humidity,26.1,81,WARNING,2026-10-03
+S105,W03,Temperature,22.8,55,OK,2026-10-03
+S106,W03,Humidity,25.4,58,OK,2026-10-03
+S107,W01,Temperature,39.2,79,CRITICAL,2026-10-03
+S108,W02,Humidity,29.3,76,WARNING,2026-10-03
+S109,W03,Temperature,23.7,57,OK,2026-10-03
+S110,W01,Humidity,27.8,69,OK,2026-10-03
+
+Task 1 — Ingestion Notebook
+Create:
+01_iot_ingestion
+Requirements
+1. Read the CSV using PySpark.
+2. Apply an appropriate schema.
+3. Add/use the process_date parameter.
+4. Write the raw data into a Bronze Delta table.
+5. Print the number of records ingested.
+Expected flow:
+CSV
+ ↓
+PySpark
+ ↓
+Bronze Delta
+
+Task 2 — Transformation Notebook
+Create:
+02_iot_transformation
+Requirements
+Read the Bronze data and:
+1. Convert reading_date into an appropriate date type.
+2. Remove invalid records where temperature or humidity is null.
+3. Create a new column:
+temperature_status
+
+with:
+temperature < 30       → NORMAL
+30–35                  → HIGH
+> 35                   → CRITICAL
+
+4. Write the cleaned data to a Silver Delta table.
+Expected flow:
+Bronze
+   ↓
+Clean
+   ↓
+Validate
+   ↓
+Create temperature_status
+   ↓
+Silver
+
+Task 3 — Gold Notebook
+Create:
+03_iot_gold
+Read the Silver data and generate a Gold summary containing:
+warehouse_id
+total_readings
+average_temperature
+maximum_temperature
+critical_readings
+warning_readings
+
+For example:
+W01 | ... | ... | ... | ... | ...
+W02 | ... | ... | ... | ... | ...
+W03 | ... | ... | ... | ... | ...
+
+Write the result as a Gold Delta table.
+Task 4 — Create the Databricks Job
+Create a Job named:
+IoT_Daily_Monitoring
+
+Configure the following tasks:
+Task 1
+iot_ingestion
+     |
+     ↓
+Task 2
+iot_transformation
+     |
+     ↓
+Task 3
+iot_gold
+
+Requirements
+- Task 2 must depend on Task 1.
+- Task 3 must depend on Task 2.
+- Configure the Job to use a suitable compute option.
+- Add a process_date parameter.
+Task 5 — Scheduling
+Configure the Job to run daily.
+The student should explain:
+Why is scheduling useful for this pipeline?
+
+Expected idea:
+The sensor pipeline should run automatically rather than requiring an engineer to manually execute the three notebooks every day.

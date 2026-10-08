@@ -1,0 +1,22 @@
+Class 17 Assignment — DevOps, Git & CI/CD
+Question: Build a Basic CI Workflow for a Python Data Utility
+Create a GitHub repository named class17-devops-assignment and complete the following:
+1. Create a Python file sales.py containing a function:
+   calculate_revenue(price, quantity)
+   
+   
+   which returns price × quantity.
+2. Create test_sales.py with at least 2 test cases using pytest.
+3. Create a Git branch named:
+   feature/sales-calculation
+4. Commit and push your code to GitHub.
+5. Create a GitHub Actions workflow that:
+   - Runs whenever code is pushed.
+   - Installs Python and pytest.
+   - Executes the tests.
+6. Intentionally make one test fail, push the change, and observe the failed GitHub Actions run. Then fix the test and push again so that the workflow passes.
+Submit:
+- GitHub repository link
+- Screenshot of failed CI run
+- Screenshot of successful CI run
+Concepts covered: Git branching, commit/push workflow, GitHub Actions, CI, automated testing, and failure recovery.

@@ -1,0 +1,21 @@
+Class 18 Assignment — Testing & Code Quality
+Scenario: E-Commerce Order Validation
+You are given the following function:
+def calculate_order_total(price, quantity):    return price * quantity
+
+
+Tasks
+1. Write 3 pytest test cases:
+   - One normal case
+   - One edge case
+   - One invalid-input case
+2. Modify the function so that it raises a ValueError when price or quantity is negative.
+3. Create a validate_order(order) function that checks:
+   - order_id is present
+   - price is non-negative
+   - quantity is non-negative
+4. Write at least 2 pytest tests for validate_order().
+5. Run all tests using:
+pytest -v
+
+Expected outcome: All tests should pass, and the code should be organized into separate application and test files.
