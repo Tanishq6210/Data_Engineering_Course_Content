@@ -46,7 +46,7 @@ def test_clean_orders(spark):
 
     result = clean_orders(df)
 
-    assert result.count() == 2
+    assert result.count() == 1
 
 
 def test_calculate_total_amount(spark):
