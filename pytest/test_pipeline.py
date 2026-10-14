@@ -8,7 +8,7 @@ from pyspark.sql import SparkSession
 os.environ["PYSPARK_PYTHON"] = sys.executable
 os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
 
-from Day_70_DevOps.pipeline import (
+from Day_71_Testing_Guide.pipeline import (
     clean_orders,
     calculate_total_amount,
     aggregate_revenue
@@ -72,7 +72,7 @@ def test_calculate_total_amount(spark):
     }
 
     assert amounts[1] == 2000
-    assert amounts[2] != 1500
+    assert amounts[2] == 1500
 
 
 def test_aggregate_revenue(spark):

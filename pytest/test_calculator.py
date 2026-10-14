@@ -1,6 +1,6 @@
 import pytest
 
-from Day_70_DevOps.math_project.calculator import ( add, subtract, multiply, divide, power, modulus )
+from Day_71_Testing_Guide.math_project.calculator import ( add, subtract, multiply, divide, power, modulus , calculate_result)
 
 
 def test_add():
@@ -30,3 +30,14 @@ def test_modulus():
 def test_divide_by_zero():
     with pytest.raises(ValueError):
         divide(10, 0)
+
+
+def test_calculate_result_integration():
+    result = calculate_result(10, 5, 3)
+
+    assert result == pytest.approx(40 / 3)
+
+
+def test_calculate_result_division_by_zero():
+    with pytest.raises(ValueError, match="Cannot divide by zero"):
+        calculate_result(10, 5, 0)
