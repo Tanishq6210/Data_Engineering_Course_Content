@@ -2,9 +2,9 @@ import pytest
 
 from Day_71_Testing_Guide.math_project.calculator import ( add, subtract, multiply, divide, power, modulus , calculate_result)
 
-
+# asset -> I expect this condition to be true
 def test_add():
-    assert add(10, 5) == 15
+    assert add(10, 5) == 10
 
 
 def test_subtract():
