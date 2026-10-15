@@ -10,6 +10,15 @@ on:
       - 'Day_72_Docker/Dockerfile'
       - '.github/workflows/docker-notes.yml'
 
+      
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'Day_72_Docker/notes.py'
+      - 'Day_72_Docker/Dockerfile'
+      - '.github/workflows/docker-notes.yml'
+
   workflow_dispatch:
 
 jobs:
