@@ -28,6 +28,7 @@
 def demo(*args):
     print(len(args))
 
+
 demo(10, 20, 30)
 
 
@@ -39,34 +40,32 @@ print(square(4))
 # Ques 10
 numbers = [1, 2, 3]
 
-result = list(
-    map(lambda x: x*2, numbers)
-)
+result = list(map(lambda x: x * 2, numbers))
 
 print(result)
 
 # Ques 12
-numbers = [1,2,3,4,5]
+numbers = [1, 2, 3, 4, 5]
 
-result = list(
-    filter(lambda x:x>3, numbers)
-)
+result = list(filter(lambda x: x > 3, numbers))
 
 print(result)
+
 
 # Ques 13
 def demo(*args, **kwargs):
     print(args)
     print(kwargs)
 
+
 demo(10, 20, name="Rahul")
 # option A
 (10, 20)
-{'name': 'Rahul'}
+{"name": "Rahul"}
 
 # option B
-[10,20]
-['Rahul']
+[10, 20]
+["Rahul"]
 
 # option C
 # 10 20 Rahul
@@ -76,9 +75,7 @@ demo(10, 20, name="Rahul")
 # Ques 14
 marks = [50, 60, 70]
 
-result = list(
-    map(lambda x:x+5, marks)
-)
+result = list(map(lambda x: x + 5, marks))
 
 print(result)
 
@@ -86,9 +83,7 @@ print(result)
 # Ques 15
 numbers = [10, 15, 20, 25, 30]
 
-result = list(
-    filter(lambda x:x%10==0, numbers)
-)
+result = list(filter(lambda x: x % 10 == 0, numbers))
 
 print(result)
 # Ques 16

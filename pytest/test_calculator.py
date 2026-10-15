@@ -1,6 +1,15 @@
 import pytest
 
-from Day_71_Testing_Guide.math_project.calculator import ( add, subtract, multiply, divide, power, modulus , calculate_result)
+from Day_71_Testing_Guide.math_project.calculator import (
+    add,
+    subtract,
+    multiply,
+    divide,
+    power,
+    modulus,
+    calculate_result,
+)
+
 
 # asset -> I expect this condition to be true
 def test_add():

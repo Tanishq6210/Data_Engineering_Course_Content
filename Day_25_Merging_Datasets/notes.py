@@ -13,19 +13,23 @@
 
 import pandas as pd
 
-customers = pd.DataFrame({
-    "CustomerID": [101, 102, 103, 104, 105],
-    "CustomerName": ["Alice", "Bob", "Charlie", "David", "Eva"],
-    "Region": ["North", "South", "East", "West", "North"]
-})
+customers = pd.DataFrame(
+    {
+        "CustomerID": [101, 102, 103, 104, 105],
+        "CustomerName": ["Alice", "Bob", "Charlie", "David", "Eva"],
+        "Region": ["North", "South", "East", "West", "North"],
+    }
+)
 
-sales = pd.DataFrame({
-    "OrderID": ["O001", "O002", "O003", "O004", "O005", "O006"],
-    "CustomerID": [101,    102,    101,    103,   104,   106],
-    "ProductID": ["P101", "P102", "P101", "P105", "P104", "P102"],
-    "Quantity": [1, 2, 3, 2, 1, 1],
-    "Sales": [55000, 40000, 15000, 6000, 12000, 20000]
-})
+sales = pd.DataFrame(
+    {
+        "OrderID": ["O001", "O002", "O003", "O004", "O005", "O006"],
+        "CustomerID": [101, 102, 101, 103, 104, 106],
+        "ProductID": ["P101", "P102", "P101", "P105", "P104", "P102"],
+        "Quantity": [1, 2, 3, 2, 1, 1],
+        "Sales": [55000, 40000, 15000, 6000, 12000, 20000],
+    }
+)
 
 # Grouping single column
 print(customers.groupby("Region")["CustomerID"].count())
@@ -51,52 +55,39 @@ print(sales.groupby("ProductID")["Sales"].agg(["sum", "mean", "max", "min"]))
 
 
 # Students dataframe
-students = pd.DataFrame({
-    "StudentID": [101, 102, 103, 104, 105],
-    "StudentName": ["Alice", "Bob", "Charlie", "David", "Eva"]
-})
-
-courses = pd.DataFrame({
-    "StudentID": [101, 101, 101, 101],
-    "CourseID": ["C-101", "C-202", "C-203", "C-204"],
-    "CourseName": ["Math", "Science", "History", "Art"]
-})
-
-inner_join = pd.merge(
-    students, courses, on="StudentID", how="inner"
+students = pd.DataFrame(
+    {
+        "StudentID": [101, 102, 103, 104, 105],
+        "StudentName": ["Alice", "Bob", "Charlie", "David", "Eva"],
+    }
 )
+
+courses = pd.DataFrame(
+    {
+        "StudentID": [101, 101, 101, 101],
+        "CourseID": ["C-101", "C-202", "C-203", "C-204"],
+        "CourseName": ["Math", "Science", "History", "Art"],
+    }
+)
+
+inner_join = pd.merge(students, courses, on="StudentID", how="inner")
 
 print(inner_join)
 
 # Left Join
 print("== Left Join ==")
-left_join = pd.merge(
-    students,
-    courses,
-    on="StudentID",
-    how="left"
-)
+left_join = pd.merge(students, courses, on="StudentID", how="left")
 print(left_join)
 
 # Right Join
 print("== Right Join ==")
-right_join = pd.merge(
-    students,
-    courses,
-    on="StudentID",
-    how="right"
-)
+right_join = pd.merge(students, courses, on="StudentID", how="right")
 
 print(right_join)
 
 # Outer Join
 print("== Outer Join ==")
-outer_join = pd.merge(
-    students,
-    courses,
-    on="StudentID",
-    how="outer"
-)
+outer_join = pd.merge(students, courses, on="StudentID", how="outer")
 
 print(outer_join)
 
@@ -118,13 +109,9 @@ print(outer_join)
 # print(result)
 
 
-df1 = pd.DataFrame({
-    "Name": ["Vibhore", "Krishan"]
-})
+df1 = pd.DataFrame({"Name": ["Vibhore", "Krishan"]})
 
-df2 = pd.DataFrame({
-    "Age": [28, 27]
-}, index = [1, 2])
+df2 = pd.DataFrame({"Age": [28, 27]}, index=[1, 2])
 
 # Horizontal Concatenation
 result = pd.concat([df1, df2], axis=1)

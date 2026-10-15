@@ -7,15 +7,11 @@ from pyspark.sql import SparkSession
 from delta import configure_spark_with_delta_pip
 
 builder = (
-    SparkSession.builder
-    .appName("Class12_Delta_Lake")
-    .config(
-        "spark.sql.extensions",
-        "io.delta.sql.DeltaSparkSessionExtension"
-    )
+    SparkSession.builder.appName("Class12_Delta_Lake")
+    .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
     .config(
         "spark.sql.catalog.spark_catalog",
-        "org.apache.spark.sql.delta.catalog.DeltaCatalog"
+        "org.apache.spark.sql.delta.catalog.DeltaCatalog",
     )
 )
 
@@ -24,7 +20,7 @@ spark = configure_spark_with_delta_pip(builder).getOrCreate()
 data = [
     (1, "Rahul", "Delhi", 5000),
     (2, "Priya", "Mumbai", 7000),
-    (3, "Aman", "Bangalore", 6000)
+    (3, "Aman", "Bangalore", 6000),
 ]
 
 columns = ["customer_id", "name", "city", "amount"]
@@ -45,10 +41,7 @@ delta_df.show()
 from delta.tables import DeltaTable
 
 delta_table = DeltaTable.forPath(spark, "/output/customers_delta")
-delta_table.update(
-    condition = "customer_id = 1",
-    set = {"amount" : "5500"}
-)
+delta_table.update(condition="customer_id = 1", set={"amount": "5500"})
 
 delta_table.toDF().show()
 

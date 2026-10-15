@@ -17,7 +17,7 @@ def divide(a, b):
 
 
 def power(a, b):
-    return a ** b
+    return a**b
 
 
 def modulus(a, b):

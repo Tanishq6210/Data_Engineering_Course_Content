@@ -7,9 +7,7 @@ os.environ["PYSPARK_PYTHON"] = sys.executable
 os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
 
 spark = (
-    SparkSession.builder.appName("Spark Architecture")
-         .master("local[*]")
-         .getOrCreate()
+    SparkSession.builder.appName("Spark Architecture").master("local[*]").getOrCreate()
 )
 
 
@@ -29,14 +27,11 @@ df = spark.createDataFrame(data, ["city", "amount"])
 
 df.show()
 
-print(f'Number of partitions: {df.rdd.getNumPartitions()}')
+print(f"Number of partitions: {df.rdd.getNumPartitions()}")
 
 df2 = df.repartition(4)
 print(f"Number of partitions after repartitioning: {df2.rdd.getNumPartitions()}")
 
-df2.withColumn(
-    "partition_id",
-    spark_partition_id()
-).show()
+df2.withColumn("partition_id", spark_partition_id()).show()
 
 df.count()

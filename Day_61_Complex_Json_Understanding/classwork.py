@@ -50,8 +50,7 @@ from pyspark.sql.types import (
 # ============================================================
 
 spark = (
-    SparkSession.builder
-    .appName("Class9-ComplexJSON-EndToEndPipeline")
+    SparkSession.builder.appName("Class9-ComplexJSON-EndToEndPipeline")
     .master("local[*]")
     .getOrCreate()
 )
@@ -100,18 +99,12 @@ struct_demo.show()
 
 # ArrayType example: tags
 print("\n===== ARRAY EXAMPLE =====")
-df.select(
-    "event_id",
-    "tags"
-).show(truncate=False)
+df.select("event_id", "tags").show(truncate=False)
 
 
 # MapType example: metadata
 print("\n===== MAP EXAMPLE =====")
-df.select(
-    "event_id",
-    "metadata"
-).show(truncate=False)
+df.select("event_id", "metadata").show(truncate=False)
 
 
 # ============================================================
@@ -119,34 +112,24 @@ df.select(
 # ============================================================
 
 print("\n===== array_contains() =====")
-df.filter(
-    array_contains("tags", "electronics")
-).select(
-    "event_id",
-    "user_id",
-    "tags"
+df.filter(array_contains("tags", "electronics")).select(
+    "event_id", "user_id", "tags"
 ).show(truncate=False)
 
 
 print("\n===== size() =====")
-df.select(
-    "event_id",
-    size("tags").alias("tag_count")
-).show()
+df.select("event_id", size("tags").alias("tag_count")).show()
 
 
 print("\n===== element_at() ON ARRAY =====")
-df.select(
-    "event_id",
-    element_at("tags", 1).alias("first_tag")
-).show()
+df.select("event_id", element_at("tags", 1).alias("first_tag")).show()
 
 
 print("\n===== element_at() ON MAP =====")
 df.select(
     "event_id",
     element_at("metadata", "browser").alias("browser"),
-    element_at("metadata", "app_version").alias("app_version")
+    element_at("metadata", "app_version").alias("app_version"),
 ).show()
 
 
@@ -205,10 +188,7 @@ event_df.show(truncate=False)
 
 print("\n===== posexplode() DEMO =====")
 
-df.select(
-    "event_id",
-    posexplode("tags").alias("position", "tag")
-).show()
+df.select("event_id", posexplode("tags").alias("position", "tag")).show()
 
 
 # ============================================================
@@ -216,37 +196,14 @@ df.select(
 # ============================================================
 
 dated_df = (
-    event_df
+    event_df.withColumn("event_timestamp", to_timestamp("event_timestamp"))
+    .withColumn("signup_date", to_date("signup_date"))
+    .withColumn("event_date", to_date("event_timestamp"))
+    .withColumn("event_year", year("event_timestamp"))
+    .withColumn("event_month", month("event_timestamp"))
+    .withColumn("event_day", dayofmonth("event_timestamp"))
     .withColumn(
-        "event_timestamp",
-        to_timestamp("event_timestamp")
-    )
-    .withColumn(
-        "signup_date",
-        to_date("signup_date")
-    )
-    .withColumn(
-        "event_date",
-        to_date("event_timestamp")
-    )
-    .withColumn(
-        "event_year",
-        year("event_timestamp")
-    )
-    .withColumn(
-        "event_month",
-        month("event_timestamp")
-    )
-    .withColumn(
-        "event_day",
-        dayofmonth("event_timestamp")
-    )
-    .withColumn(
-        "days_since_signup",
-        datediff(
-            to_date("event_timestamp"),
-            "signup_date"
-        )
+        "days_since_signup", datediff(to_date("event_timestamp"), "signup_date")
     )
 )
 
@@ -273,6 +230,7 @@ dated_df.select(
 # This UDF is intentionally simple so that we can compare it
 # with Spark's built-in upper() function.
 
+
 def make_upper(name):
     if name is None:
         return None
@@ -282,17 +240,11 @@ def make_upper(name):
 upper_udf = udf(make_upper, StringType())
 
 print("\n===== PYTHON UDF DEMO =====")
-dated_df.select(
-    "user_name",
-    upper_udf("user_name").alias("upper_name")
-).show()
+dated_df.select("user_name", upper_udf("user_name").alias("upper_name")).show()
 
 
 print("\n===== PREFERRED: BUILT-IN SPARK FUNCTION =====")
-dated_df.select(
-    "user_name",
-    upper("user_name").alias("upper_name")
-).show()
+dated_df.select("user_name", upper("user_name").alias("upper_name")).show()
 
 
 # ============================================================
@@ -302,10 +254,7 @@ dated_df.select(
 products_path = "data/products.csv"
 
 products_df = (
-    spark.read
-    .option("header", True)
-    .option("inferSchema", True)
-    .csv(products_path)
+    spark.read.option("header", True).option("inferSchema", True).csv(products_path)
 )
 
 print("\n===== PRODUCT LOOKUP =====")
@@ -325,8 +274,7 @@ products_df.printSchema()
 # - price is <= 0
 
 clean_df = (
-    dated_df
-    .filter(col("product_id").isNotNull())
+    dated_df.filter(col("product_id").isNotNull())
     .filter(col("price").isNotNull())
     .filter(col("price") > 0)
 )
@@ -339,14 +287,7 @@ clean_df.show(truncate=False)
 # 11. JOIN WITH PRODUCT LOOKUP
 # ============================================================
 
-joined_df = (
-    clean_df
-    .join(
-        products_df,
-        on="product_id",
-        how="left"
-    )
-)
+joined_df = clean_df.join(products_df, on="product_id", how="left")
 
 print("\n===== AFTER PRODUCT JOIN =====")
 joined_df.select(
@@ -357,7 +298,7 @@ joined_df.select(
     "product_name",
     "category",
     "price",
-    "event_date"
+    "event_date",
 ).show()
 
 
@@ -367,12 +308,8 @@ joined_df.select(
 
 print("\n===== RECORDS WITH MISSING PRODUCT LOOKUP =====")
 
-joined_df.filter(
-    col("product_name").isNull()
-).select(
-    "event_id",
-    "product_id",
-    "price"
+joined_df.filter(col("product_name").isNull()).select(
+    "event_id", "product_id", "price"
 ).show()
 
 
@@ -385,19 +322,9 @@ joined_df.filter(
 #  for each category on each day?"
 
 daily_category_df = (
-    joined_df
-    .groupBy(
-        "event_date",
-        "category"
-    )
-    .agg(
-        spark_sum("price").alias("total_value"),
-        count("*").alias("event_count")
-    )
-    .orderBy(
-        "event_date",
-        "category"
-    )
+    joined_df.groupBy("event_date", "category")
+    .agg(spark_sum("price").alias("total_value"), count("*").alias("event_count"))
+    .orderBy("event_date", "category")
 )
 
 print("\n===== DAILY CATEGORY AGGREGATION =====")
@@ -420,9 +347,7 @@ print("Partitions:", daily_category_df.rdd.getNumPartitions())
 output_path = "output/daily_category"
 
 (
-    daily_category_df
-    .write
-    .mode("overwrite")
+    daily_category_df.write.mode("overwrite")
     .partitionBy("event_date")
     .parquet(output_path)
 )

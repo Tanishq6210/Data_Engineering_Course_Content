@@ -7,10 +7,7 @@ os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import broadcast
 
-
-spark = SparkSession.builder \
-    .appName("Class7B_Shuffle_Broadcast") \
-    .getOrCreate()
+spark = SparkSession.builder.appName("Class7B_Shuffle_Broadcast").getOrCreate()
 
 spark.conf.set("spark.sql.adaptive.enabled", "true")
 spark.conf.set("spark.sql.adaptive.autoBroadcastJoinThreshold", 50)
@@ -25,7 +22,7 @@ orders_data = [
     (107, "C1", 600),
     (108, "C3", 350),
     (109, "C5", 1200),
-    (110, "C2", 450)
+    (110, "C2", 450),
 ]
 
 customers_data = [
@@ -33,18 +30,12 @@ customers_data = [
     ("C2", "Priya", "Delhi"),
     ("C3", "Amit", "Mumbai"),
     ("C4", "Sneha", "Pune"),
-    ("C5", "Arjun", "Chennai")
+    ("C5", "Arjun", "Chennai"),
 ]
 
-orders = spark.createDataFrame(
-    orders_data,
-    ["order_id", "customer_id", "amount"]
-)
+orders = spark.createDataFrame(orders_data, ["order_id", "customer_id", "amount"])
 
-customers = spark.createDataFrame(
-    customers_data,
-    ["customer_id", "name", "city"]
-)
+customers = spark.createDataFrame(customers_data, ["customer_id", "name", "city"])
 
 o = orders.alias("o")
 c = customers.alias("o")

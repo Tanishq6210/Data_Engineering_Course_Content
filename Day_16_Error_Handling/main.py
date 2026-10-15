@@ -26,6 +26,7 @@ print(type(val))
 #     data = file.read()
 #     print("hi")
 
+
 # 4. ZeroDivision Error
 # print(10 / 0)
 # select * from table where table.column_name = 'abc'
@@ -33,9 +34,10 @@ print(type(val))
 def validate_age(age):
     if age > 0 and age < 150:
         return True
-    
+
     # To throw the error as per the usecase
     raise ValueError("Invalid age, Age should be in between 0 to 150")
+
 
 age = 0
 while True:
@@ -46,8 +48,7 @@ while True:
         print("0 is an invalid input! Give some other number :)")
     except ValueError as e:
         print("Invalid SQL!")
-    else: #It will be executed, when no exception was produced in the try block
-        print(f'Your age is:  {age}')
-    finally: #This block will always execute, irrespective of error was thrown or not by the try block
+    else:  # It will be executed, when no exception was produced in the try block
+        print(f"Your age is:  {age}")
+    finally:  # This block will always execute, irrespective of error was thrown or not by the try block
         print("Programm Finished!")
-

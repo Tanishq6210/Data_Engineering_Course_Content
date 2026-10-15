@@ -1,9 +1,8 @@
-
 # # for num in range (10):
 # #     if num == 5 or num == 7 or num == 9:
 # #         continue
-    
-    
+
+
 # #     print(num)
 # #     print("Hello")
 # #     print("Welcome to Python programming.")
@@ -65,7 +64,7 @@
 # #         if ch == "e":
 # #             e_alphabet_count_in_a_day += 1
 # #             ch = 'd'
-    
+
 # #     # print(f"Count of 'e' in {day}: {e_alphabet_count_in_a_day}")
 # #     e_alphabet_count_total += e_alphabet_count_in_a_day
 
@@ -82,25 +81,7 @@
 #     print(f"Character {ch}")
 
 
-
-
-
-
-
-
-
-
-
-
 # # for i in range(5):
-
-
-
-
-
-
-
-
 
 
 # # name = "Vinay"
@@ -109,12 +90,11 @@
 # # for ch in name:
 # #     if ch == "z":
 # #         is_found = True
-    
+
 # # if is_found:
 # #     print("Found 'z' in the name!")
 # # else:
 # #     print(f"'z' not found in the {name}")
-
 
 
 # n = 5
@@ -129,16 +109,15 @@
 # print("Tyagi")
 
 
-
-while(True):
+while True:
     print("Welcome to the string analyzer!")
     print("Please enter a string to analyze, or exit to exit the program.")
     input_str = input("Enter a string:")
     if input_str.lower() == "exit":
         print("Exiting the program. Goodbye!")
         break
-    
-    while(True):
+
+    while True:
         print("Enter which count you want to find (vowels/consonants/digits): ")
         print("Press 1: for vowels")
         print("Press 2: for consonants")
@@ -168,17 +147,3 @@ while(True):
             break
         else:
             print("Invalid choice. Please try again.")
-
-
-
-
-
-
-
-
-
-
-
-
-
-            

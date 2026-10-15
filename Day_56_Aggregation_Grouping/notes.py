@@ -5,22 +5,13 @@ os.environ["PYSPARK_PYTHON"] = sys.executable
 os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import (
-    col,
-    sum,
-    avg,
-    min,
-    max,
-    count
-)
+from pyspark.sql.functions import col, sum, avg, min, max, count
 
 # ============================================================
 # 1. CREATE SPARK SESSION
 # ============================================================
 
-spark = SparkSession.builder \
-    .appName("Class6_Aggregation_Practical") \
-    .getOrCreate()
+spark = SparkSession.builder.appName("Class6_Aggregation_Practical").getOrCreate()
 
 
 # ============================================================
@@ -39,19 +30,12 @@ customers_data = [
     (109, "Vivaan", "North"),
     (110, "Sara", "South"),
     (111, "Aditya", "East"),
-    (112, "Kiara", "West")
+    (112, "Kiara", "West"),
 ]
 
-customers_columns = [
-    "customer_id",
-    "customer_name",
-    "region"
-]
+customers_columns = ["customer_id", "customer_name", "region"]
 
-customers_df = spark.createDataFrame(
-    customers_data,
-    customers_columns
-)
+customers_df = spark.createDataFrame(customers_data, customers_columns)
 
 print("CUSTOMERS")
 customers_df.show()
@@ -71,20 +55,12 @@ products_data = [
     (207, "Running Shoes", "Fashion", 4500),
     (208, "T-Shirt", "Fashion", 1200),
     (209, "Smart Watch", "Electronics", 8000),
-    (210, "Water Bottle", "Lifestyle", 700)
+    (210, "Water Bottle", "Lifestyle", 700),
 ]
 
-products_columns = [
-    "product_id",
-    "product_name",
-    "category",
-    "price"
-]
+products_columns = ["product_id", "product_name", "category", "price"]
 
-products_df = spark.createDataFrame(
-    products_data,
-    products_columns
-)
+products_df = spark.createDataFrame(products_data, products_columns)
 
 print("PRODUCTS")
 products_df.show()
@@ -124,21 +100,12 @@ orders_data = [
     (1027, 105, 210, 6, "2026-08-14"),
     (1028, 106, 205, 3, "2026-08-14"),
     (1029, 107, 208, 4, "2026-08-15"),
-    (1030, 108, 204, 3, "2026-08-15")
+    (1030, 108, 204, 3, "2026-08-15"),
 ]
 
-orders_columns = [
-    "order_id",
-    "customer_id",
-    "product_id",
-    "quantity",
-    "order_date"
-]
+orders_columns = ["order_id", "customer_id", "product_id", "quantity", "order_date"]
 
-orders_df = spark.createDataFrame(
-    orders_data,
-    orders_columns
-)
+orders_df = spark.createDataFrame(orders_data, orders_columns)
 
 # Dataframe API's
 

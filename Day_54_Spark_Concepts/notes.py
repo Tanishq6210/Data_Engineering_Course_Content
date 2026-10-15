@@ -8,12 +8,7 @@ os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 
-spark = (
-    SparkSession.builder
-    .appName("Spark Concepts")
-    .master("local[*]")
-    .getOrCreate()
-)
+spark = SparkSession.builder.appName("Spark Concepts").master("local[*]").getOrCreate()
 
 # spark.read
 # spark.createDataFrame
@@ -53,13 +48,15 @@ spark = (
 
 # df = spark.read.option("header", True).option("inferSchema", True).csv("input/customers.csv")
 # Explicit schema
-schema = StructType([
-    StructField("customer_id", IntegerType(), True),
-    StructField("name", StringType(), True),
-    StructField("age", IntegerType(), True),
-    StructField("salary", DoubleType(), True),
-    StructField("is_active", BooleanType(), True),
-])
+schema = StructType(
+    [
+        StructField("customer_id", IntegerType(), True),
+        StructField("name", StringType(), True),
+        StructField("age", IntegerType(), True),
+        StructField("salary", DoubleType(), True),
+        StructField("is_active", BooleanType(), True),
+    ]
+)
 
 df = spark.read.option("header", True).schema(schema).csv("input/customers.csv")
 df.explain()
@@ -73,10 +70,10 @@ df.printSchema()
 
 # Spark Datatypes:
 # StringType() -> "Alice"
-#IntegerType() -> 25
-#DoubleType() -> 30.4
+# IntegerType() -> 25
+# DoubleType() -> 30.4
 # DateType() -> "2024-01-03"
-#TimestampType() -> "2024-01-03 12:30:45"
-#BooleanType() -> True / False
+# TimestampType() -> "2024-01-03 12:30:45"
+# BooleanType() -> True / False
 
 # Parquet -> Columnar storage format

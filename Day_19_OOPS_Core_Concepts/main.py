@@ -14,28 +14,35 @@
 # Parent class, super class, base class -> Parent class
 # Inherited class, child class
 import os
+
+
 # Parent class
 class Animal:
     def sound(self):
         print("Animal making sound!")
 
+
 # Child class
 class Dog(Animal):
-    
+
     def sound(self):
         self.sound()
         print("Bark!!")
+
 
 class LabraDog(Dog):
     def sound(self):
         self.sound()
         print("Labra Barks!")
+
     pass
+
 
 class Cat(Animal):
     # def sound(self):
     #     print("Meoww!")
     pass
+
 
 animal = Animal()
 animal.sound()
@@ -49,6 +56,7 @@ cat.sound()
 labra_dog = LabraDog()
 labra_dog.sound()
 
+
 class FileProcessor:
 
     def validate_file(self, file_path):
@@ -61,20 +69,23 @@ class FileProcessor:
     def read(self):
         raise NotImplementedError("Child class must implement read()")
 
+
 class CsvProcessor(FileProcessor):
     def read(self):
         print("Reading a CSV file!")
-        
+
 
 class JsonProcessor(FileProcessor):
-    
+
     def read(self):
         self.validate_file()
         print("Reading a Json file!")
         pass
 
+
 class TextFileProcessor(FileProcessor):
     pass
+
 
 # Method overriding - It occurs when a child class provides its own implementation of a method already defined in the parent class
 
@@ -99,11 +110,15 @@ balance = 100000
 
 balance = -1000
 
+
 class InvalidAmountException(Exception):
     pass
 
+
 class InvalidUserError(Exception):
     pass
+
+
 class BankAccount:
 
     def __init__(self, name, account_balance):
@@ -127,8 +142,6 @@ class BankAccount:
         return self.__account_balance
 
 
-
-
 mohit_account = BankAccount("Mohit Pandey", 100000)
 # print(mohit_account.account_balance)
 mohit_account.name = "Rohit"
@@ -145,6 +158,7 @@ list2 = [3, 1, 2]
 print(list1.sort())
 print(list2.sort())
 
+
 class A:
     def __init__(self, name):
         self._name = name
@@ -153,18 +167,19 @@ class A:
 # super() -> This function is used to call the parent class properties or methods from the chil class
 class Student:
     def __init__(self, roll_no, name):
-        self.roll_no = roll_no #public attribute -> Visible everywhere
-        self._name = name #protected attribute -> Parent and derived classes
-        self.__address = "Gurugram" #private attribute -> Only in the class where it is defined
+        self.roll_no = roll_no  # public attribute -> Visible everywhere
+        self._name = name  # protected attribute -> Parent and derived classes
+        self.__address = (
+            "Gurugram"  # private attribute -> Only in the class where it is defined
+        )
 
-    
     def displayStudent(self):
         print("Displaying Student!")
+
 
 class BtechStudent(Student):
     def __init__(self, roll_no, name):
         super().__init__(roll_no, name)
-
 
     def display_student(self):
         super().displayStudent()
@@ -172,7 +187,7 @@ class BtechStudent(Student):
 
     def display_student_name(self):
         print(f"Name: {self._name}")
-    
+
     def display_student_address(self):
         print(f"Address: {self.__address}")
 

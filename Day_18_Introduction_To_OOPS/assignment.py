@@ -24,13 +24,6 @@
 # Annual Salary: 600000
 
 
-
-
-
-
-
-
-
 # Homework Assignment
 
 # Create a Dataset class.

@@ -1,7 +1,6 @@
 import csv
 import json
 
-
 employees = []
 total_salary = 0
 
@@ -21,14 +20,11 @@ with open("employee.csv", "r") as employee_file:
 average_salary = total_salary / len(employees)
 
 
-employees_json_output = {
-    "employees": employees,
-    "average_salary": average_salary
-}
+employees_json_output = {"employees": employees, "average_salary": average_salary}
 
 
 # Write dictionary (python object) into a JSON file
 with open("employee_output.json", "w") as output_file:
-    json.dump(employees_json_output, output_file, indent = 4)
+    json.dump(employees_json_output, output_file, indent=4)
 
 print("Data exported successfully!")

@@ -23,7 +23,9 @@ customer[3].append(7)
 # print(customer[3])
 
 # Unpacking a tuple
-customer_name, customer_id, customer_balance, customer_list, customer_second_name = customer
+customer_name, customer_id, customer_balance, customer_list, customer_second_name = (
+    customer
+)
 # print(customer_name)
 # print(customer_id)
 # print(customer_balance)
@@ -108,4 +110,3 @@ print(numbers_set_sym_diff)
 abc = [1, 2, 3, 4]
 abc[1] = abc
 print(abc)
-
