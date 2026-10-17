@@ -12,5 +12,20 @@
 
 
 
-
+import pandas as pd
 print("Hey, I'm running in Docker Container!")
+
+data = {
+    "product": ["Laptop", "Phone", "Tablet"],
+    "price": [70000, 30000, 20000],
+    "quantity": [2, 3, 4]
+}
+
+df = pd.DataFrame(data)
+
+df["total_amount"] = df["price"] * df["quantity"]
+
+print("\nProcessed Data:")
+print(df)
+
+print("\nTotal Revenue:", df["total_amount"].sum())
