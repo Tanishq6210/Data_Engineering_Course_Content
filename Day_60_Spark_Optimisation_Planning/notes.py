@@ -7,68 +7,51 @@ os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
 from pyspark.sql import SparkSession
 from pyspark import StorageLevel
 
-spark = SparkSession.builder \
-    .appName("Class6_Aggregation_Practical") \
-    .getOrCreate()
+spark = SparkSession.builder.appName("Class6_Aggregation_Practical").getOrCreate()
 
 
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder \
-    .appName("SparkOptimizationDemo") \
-    .getOrCreate()
+spark = SparkSession.builder.appName("SparkOptimizationDemo").getOrCreate()
 
 orders_data = [
-    (101, 1, 5000,  "SUCCESS"),
+    (101, 1, 5000, "SUCCESS"),
     (102, 2, 15000, "SUCCESS"),
     (103, 3, 25000, "FAILED"),
     (104, 1, 12000, "SUCCESS"),
-    (105, 4, 3000,  "SUCCESS"),
+    (105, 4, 3000, "SUCCESS"),
     (106, 5, 20000, "SUCCESS"),
-    (107, 2, 8000,  "SUCCESS"),
+    (107, 2, 8000, "SUCCESS"),
     (108, 3, 18000, "SUCCESS"),
     (109, 6, 22000, "FAILED"),
-    (110, 4, 11000, "SUCCESS")
+    (110, 4, 11000, "SUCCESS"),
 ]
 
-orders_columns = [
-    "order_id",
-    "customer_id",
-    "amount",
-    "status"
-]
+orders_columns = ["order_id", "customer_id", "amount", "status"]
 
-orders = spark.createDataFrame(
-    orders_data,
-    orders_columns
-)
+orders = spark.createDataFrame(orders_data, orders_columns)
 
 orders.show()
 
 customers_data = [
     (1, "Tanishq", "Bangalore"),
-    (2, "Rahul",   "Delhi"),
-    (3, "Priya",   "Mumbai"),
-    (4, "Aman",    "Pune"),
-    (5, "Neha",    "Hyderabad"),
-    (6, "Rohan",   "Chennai")
+    (2, "Rahul", "Delhi"),
+    (3, "Priya", "Mumbai"),
+    (4, "Aman", "Pune"),
+    (5, "Neha", "Hyderabad"),
+    (6, "Rohan", "Chennai"),
 ]
 
-customers_columns = [
-    "customer_id",
-    "customer_name",
-    "city"
-]
+customers_columns = ["customer_id", "customer_name", "city"]
 
-customers = spark.createDataFrame(
-    customers_data,
-    customers_columns
-)
+customers = spark.createDataFrame(customers_data, customers_columns)
 
 customers.show()
 
-customers_needed_columns = customers.select("customer_id", "city") # Column pruning
-orders_needed_columns = orders.filter(orders.amount > 1000).select("customer_id", "amount") #Column pruning & predicate pushdown
+customers_needed_columns = customers.select("customer_id", "city")  # Column pruning
+orders_needed_columns = orders.filter(orders.amount > 1000).select(
+    "customer_id", "amount"
+)  # Column pruning & predicate pushdown
 
 result = (
     orders
@@ -81,12 +64,10 @@ result = (
     # )
 )
 print("--------------Extended--------------------")
-result.explain(extended = True)
+result.explain(extended=True)
 print("--------------Formatted---------------------------")
 result.explain("formatted")
 result.show()
-
-
 
 
 # -----------------------------------
@@ -96,7 +77,7 @@ result.show()
 # filtered_df = df.filter(df.amount > 1000) #Will execution start at this point ?
 
 
-# filtered_df.cache() 
+# filtered_df.cache()
 
 # filtered_df.count() #Action 1 - Job 1
 
@@ -120,7 +101,6 @@ result.show()
 # filtered_df.unpersist()
 
 
-
 # When does caching actually help?
 # cache -> performance improvement
 
@@ -136,7 +116,7 @@ result.show()
 # filtered_review.count() #Action - 1 | If we never use the result again, caching doesn't provide much benefits
 
 # Scenario 3 - > When data is enormous
-# Memory pressure -> Disk spills -> Potential OOM(Out of Memory issues) issues 
+# Memory pressure -> Disk spills -> Potential OOM(Out of Memory issues) issues
 
 
 # Cache decision Framework

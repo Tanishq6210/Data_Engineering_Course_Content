@@ -17,7 +17,7 @@
 # #     print("Login successful!")
 
 # #     a = 1 + 1
-    
+
 
 # salary = 80000
 # working_hours = 30
@@ -27,9 +27,6 @@
 #     print("You are not eligible for a bonus.")
 
 # print("Program ended.")
-
-
-
 
 
 # rating = 5
@@ -59,7 +56,6 @@
 #     print("You are not old enough for the job.")
 
 
-
 # age = int(input("Enter your age: "))
 
 # age = 40
@@ -77,15 +73,15 @@
 
 # Q 1:
 # age and rating
-#Branching age > 24 and rating > 4 -> "Best employee"
-#age > 24 and rating > 3 -> "Good employee"
-#age > 24 and rating > 2 -> "Average employee"
-#age < 1 -> "You are not born yet!"
+# Branching age > 24 and rating > 4 -> "Best employee"
+# age > 24 and rating > 3 -> "Good employee"
+# age > 24 and rating > 2 -> "Average employee"
+# age < 1 -> "You are not born yet!"
 
 
 # 2
-#current_balance -> 10000
-#amount_to_be_withdrawn -> User input
+# current_balance -> 10000
+# amount_to_be_withdrawn -> User input
 # current_balance = int(input("Enter your current balance: "))
 # amount_to_be_withdrawn = int(input("Enter the amount you want to withdraw: "))
 
@@ -94,7 +90,7 @@
 # else:
 #     print("Withdrawal successful. Please take your cash.")
 
-# Q3 
+# Q3
 # take 3 integer inputs from the user -> print the largest and the smallest
 # num1 = int(input("Enter the first number: "))
 # num2 = int(input("Enter the second number: "))
@@ -123,20 +119,20 @@
 
 
 # x = 5 if x == 5 or 6: print(“X..”) else: print(“x.fd”)
-                                               
+
 x = 5
 
-if x != 5 or x==6:
+if x != 5 or x == 6:
     print("Hii")
 else:
     print("Hello")
-                                               
-                                               
+
+
 # Q4
-#Grade classification programm
+# Grade classification programm
 
 
-#switch case in python
+# switch case in python
 # age = 40
 # match age:
 #     case 18:

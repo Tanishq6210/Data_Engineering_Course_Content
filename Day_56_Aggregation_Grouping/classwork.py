@@ -4,22 +4,13 @@
 # ============================================================
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import (
-    col,
-    sum,
-    avg,
-    min,
-    max,
-    count
-)
+from pyspark.sql.functions import col, sum, avg, min, max, count
 
 # ============================================================
 # 1. CREATE SPARK SESSION
 # ============================================================
 
-spark = SparkSession.builder \
-    .appName("Class6_Aggregation_Practical") \
-    .getOrCreate()
+spark = SparkSession.builder.appName("Class6_Aggregation_Practical").getOrCreate()
 
 
 # ============================================================
@@ -38,19 +29,12 @@ customers_data = [
     (109, "Vivaan", "North"),
     (110, "Sara", "South"),
     (111, "Aditya", "East"),
-    (112, "Kiara", "West")
+    (112, "Kiara", "West"),
 ]
 
-customers_columns = [
-    "customer_id",
-    "customer_name",
-    "region"
-]
+customers_columns = ["customer_id", "customer_name", "region"]
 
-customers_df = spark.createDataFrame(
-    customers_data,
-    customers_columns
-)
+customers_df = spark.createDataFrame(customers_data, customers_columns)
 
 print("CUSTOMERS")
 customers_df.show()
@@ -70,20 +54,12 @@ products_data = [
     (207, "Running Shoes", "Fashion", 4500),
     (208, "T-Shirt", "Fashion", 1200),
     (209, "Smart Watch", "Electronics", 8000),
-    (210, "Water Bottle", "Lifestyle", 700)
+    (210, "Water Bottle", "Lifestyle", 700),
 ]
 
-products_columns = [
-    "product_id",
-    "product_name",
-    "category",
-    "price"
-]
+products_columns = ["product_id", "product_name", "category", "price"]
 
-products_df = spark.createDataFrame(
-    products_data,
-    products_columns
-)
+products_df = spark.createDataFrame(products_data, products_columns)
 
 print("PRODUCTS")
 products_df.show()
@@ -123,21 +99,12 @@ orders_data = [
     (1027, 105, 210, 6, "2026-08-14"),
     (1028, 106, 205, 3, "2026-08-14"),
     (1029, 107, 208, 4, "2026-08-15"),
-    (1030, 108, 204, 3, "2026-08-15")
+    (1030, 108, 204, 3, "2026-08-15"),
 ]
 
-orders_columns = [
-    "order_id",
-    "customer_id",
-    "product_id",
-    "quantity",
-    "order_date"
-]
+orders_columns = ["order_id", "customer_id", "product_id", "quantity", "order_date"]
 
-orders_df = spark.createDataFrame(
-    orders_data,
-    orders_columns
-)
+orders_df = spark.createDataFrame(orders_data, orders_columns)
 
 print("ORDERS")
 orders_df.show()
@@ -170,20 +137,14 @@ print("Total Orders:", total_orders)
 # 7. SUM - TOTAL QUANTITY SOLD
 # ============================================================
 
-orders_df.select(
-    sum("quantity").alias("total_quantity_sold")
-).show()
+orders_df.select(sum("quantity").alias("total_quantity_sold")).show()
 
 
 # ============================================================
 # 8. JOIN ORDERS WITH PRODUCTS
 # ============================================================
 
-order_details = orders_df.join(
-    products_df,
-    on="product_id",
-    how="inner"
-)
+order_details = orders_df.join(products_df, on="product_id", how="inner")
 
 print("ORDERS + PRODUCTS")
 order_details.show()
@@ -193,10 +154,7 @@ order_details.show()
 # 9. CALCULATE REVENUE
 # ============================================================
 
-order_details = order_details.withColumn(
-    "revenue",
-    col("quantity") * col("price")
-)
+order_details = order_details.withColumn("revenue", col("quantity") * col("price"))
 
 print("ORDER DETAILS WITH REVENUE")
 order_details.show()
@@ -206,36 +164,28 @@ order_details.show()
 # 10. TOTAL REVENUE
 # ============================================================
 
-order_details.select(
-    sum("revenue").alias("total_revenue")
-).show()
+order_details.select(sum("revenue").alias("total_revenue")).show()
 
 
 # ============================================================
 # 11. AVERAGE REVENUE
 # ============================================================
 
-order_details.select(
-    avg("revenue").alias("average_revenue")
-).show()
+order_details.select(avg("revenue").alias("average_revenue")).show()
 
 
 # ============================================================
 # 12. MINIMUM REVENUE
 # ============================================================
 
-order_details.select(
-    min("revenue").alias("minimum_revenue")
-).show()
+order_details.select(min("revenue").alias("minimum_revenue")).show()
 
 
 # ============================================================
 # 13. MAXIMUM REVENUE
 # ============================================================
 
-order_details.select(
-    max("revenue").alias("maximum_revenue")
-).show()
+order_details.select(max("revenue").alias("maximum_revenue")).show()
 
 
 # ============================================================
@@ -247,7 +197,7 @@ order_details.select(
     sum("revenue").alias("total_revenue"),
     avg("revenue").alias("average_revenue"),
     min("revenue").alias("minimum_revenue"),
-    max("revenue").alias("maximum_revenue")
+    max("revenue").alias("maximum_revenue"),
 ).show()
 
 
@@ -255,11 +205,7 @@ order_details.select(
 # 15. GROUP BY REGION
 # ============================================================
 
-order_customer = orders_df.join(
-    customers_df,
-    on="customer_id",
-    how="inner"
-)
+order_customer = orders_df.join(customers_df, on="customer_id", how="inner")
 
 print("ORDERS + CUSTOMERS")
 
@@ -270,45 +216,33 @@ order_customer.show()
 # 16. NUMBER OF ORDERS BY REGION
 # ============================================================
 
-order_customer.groupBy(
-    "region"
-).count().show()
+order_customer.groupBy("region").count().show()
 
 
 # ============================================================
 # 17. REVENUE BY CATEGORY
 # ============================================================
 
-order_details.groupBy(
-    "category"
-).agg(
-    sum("revenue").alias("total_revenue")
-).show()
+order_details.groupBy("category").agg(sum("revenue").alias("total_revenue")).show()
 
 
 # ============================================================
 # 18. AVERAGE REVENUE BY CATEGORY
 # ============================================================
 
-order_details.groupBy(
-    "category"
-).agg(
-    avg("revenue").alias("average_revenue")
-).show()
+order_details.groupBy("category").agg(avg("revenue").alias("average_revenue")).show()
 
 
 # ============================================================
 # 19. MULTIPLE AGGREGATIONS BY CATEGORY
 # ============================================================
 
-order_details.groupBy(
-    "category"
-).agg(
+order_details.groupBy("category").agg(
     count("order_id").alias("total_orders"),
     sum("revenue").alias("total_revenue"),
     avg("revenue").alias("average_revenue"),
     min("revenue").alias("minimum_revenue"),
-    max("revenue").alias("maximum_revenue")
+    max("revenue").alias("maximum_revenue"),
 ).show()
 
 
@@ -316,10 +250,7 @@ order_details.groupBy(
 # 20. REVENUE BY PRODUCT
 # ============================================================
 
-order_details.groupBy(
-    "product_id",
-    "product_name"
-).agg(
+order_details.groupBy("product_id", "product_name").agg(
     sum("revenue").alias("total_revenue")
 ).show()
 
@@ -328,45 +259,26 @@ order_details.groupBy(
 # 21. TOP PRODUCTS BY REVENUE
 # ============================================================
 
-order_details.groupBy(
-    "product_id",
-    "product_name"
-).agg(
+order_details.groupBy("product_id", "product_name").agg(
     sum("revenue").alias("total_revenue")
-).orderBy(
-    "total_revenue",
-    ascending=False
-).show()
+).orderBy("total_revenue", ascending=False).show()
 
 
 # ============================================================
 # 22. REVENUE BY REGION
 # ============================================================
 
-order_region = order_details.join(
-    customers_df,
-    on="customer_id",
-    how="inner"
-)
+order_region = order_details.join(customers_df, on="customer_id", how="inner")
 
-order_region.groupBy(
-    "region"
-).agg(
-    sum("revenue").alias("total_revenue")
-).show()
+order_region.groupBy("region").agg(sum("revenue").alias("total_revenue")).show()
 
 
 # ============================================================
 # 23. TOP REGIONS BY REVENUE
 # ============================================================
 
-order_region.groupBy(
-    "region"
-).agg(
-    sum("revenue").alias("total_revenue")
-).orderBy(
-    "total_revenue",
-    ascending=False
+order_region.groupBy("region").agg(sum("revenue").alias("total_revenue")).orderBy(
+    "total_revenue", ascending=False
 ).show()
 
 
@@ -375,40 +287,25 @@ order_region.groupBy(
 # REGION + CATEGORY
 # ============================================================
 
-order_region.groupBy(
-    "region",
-    "category"
-).agg(
+order_region.groupBy("region", "category").agg(
     sum("revenue").alias("total_revenue")
-).orderBy(
-    "total_revenue",
-    ascending=False
-).show()
+).orderBy("total_revenue", ascending=False).show()
 
 
 # ============================================================
 # 25. AVERAGE ORDER VALUE
 # ============================================================
 
-order_value = order_details.groupBy(
-    "order_id"
-).agg(
-    sum("revenue").alias("order_value")
-)
+order_value = order_details.groupBy("order_id").agg(sum("revenue").alias("order_value"))
 
-order_value.select(
-    avg("order_value").alias("average_order_value")
-).show()
+order_value.select(avg("order_value").alias("average_order_value")).show()
 
 
 # ============================================================
 # 26. TOP 5 ORDERS BY VALUE
 # ============================================================
 
-order_value.orderBy(
-    "order_value",
-    ascending=False
-).show(5)
+order_value.orderBy("order_value", ascending=False).show(5)
 
 
 # ============================================================

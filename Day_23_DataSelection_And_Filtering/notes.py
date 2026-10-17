@@ -2,11 +2,14 @@
 
 import pandas as pd
 
-employees = pd.DataFrame({
-    "Name": ["Vibhore", "Manav", "Aditi", "Sachi", "Ayush", "Manendar"],
-    "Department": ["IT", "IT", "Finance", "HR", "HR", "IT"],
-    "Age": [24, 25, 26, 27, 28, 20]
-}, index = [101, 101, 103, 104, 105, 106])
+employees = pd.DataFrame(
+    {
+        "Name": ["Vibhore", "Manav", "Aditi", "Sachi", "Ayush", "Manendar"],
+        "Department": ["IT", "IT", "Finance", "HR", "HR", "IT"],
+        "Age": [24, 25, 26, 27, 28, 20],
+    },
+    index=[101, 101, 103, 104, 105, 106],
+)
 
 # Column filtering
 
@@ -32,7 +35,9 @@ print(employees)
 # iloc[] -> Position based selection (Find row using their position)
 # print(employees.iloc[4])
 # print(employees.iloc[[0,5]])
-print(employees.iloc[0:2:2]) #It will exclude the last mentioned position of the range)
+print(
+    employees.iloc[0:2:2]
+)  # It will exclude the last mentioned position of the range)
 
 # Boolean Indexing - Filtering of Dataframe
 
@@ -50,6 +55,6 @@ print(employees.iloc[0:2:2]) #It will exclude the last mentioned position of the
 
 # Multiple values sorting
 # print(employees.sort_values(
-#     ["Department", "Age"], 
+#     ["Department", "Age"],
 #     ascending = [True, False])
 #     )

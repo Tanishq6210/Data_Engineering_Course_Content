@@ -16,7 +16,6 @@
 # print(name,"how are u")
 
 
-
 a = 5
 b = 2
 
@@ -29,11 +28,10 @@ remainder = a % b
 # print(f"Sum: {sum}, Difference: {diff}, Product: {product}, Quotient: {quotient}, Remainder: {remainder}")
 
 
-
 int_part_division = a // b
 # print(f"Floor Division: {int_part_division}")
 
-power = a ** b
+power = a**b
 # print(f"{a} to the power {b}: {power}")
 
 
@@ -90,7 +88,7 @@ phone_num = 123
 # not -> !
 # Precedence: () > not > and > or
 is_logged_in = True
-is_logged_in = (not is_logged_in)
+is_logged_in = not is_logged_in
 
 # print(is_logged_in) #
 # print(not is_logged_in) #
@@ -104,11 +102,11 @@ age = 3 * age
 age = age + 1
 age = age - 10
 age = age / 2
-age = age ** 2
+age = age**2
 age = age % 3
 # print(age)
 
-#Short hand notations
+# Short hand notations
 age = 2
 # print(age)
 age *= 3
@@ -120,8 +118,7 @@ age %= 3
 # print(age)
 
 
-
-#BODMAS -> Brackets, Orders, Division, Multiplication, Addition, Subtraction
+# BODMAS -> Brackets, Orders, Division, Multiplication, Addition, Subtraction
 result = 2 + 3 * 4
 # print(result)
 

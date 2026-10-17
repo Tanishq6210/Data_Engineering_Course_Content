@@ -1,37 +1,23 @@
 # 1 - Configuration
-dbutils.widgets.text(
-    "input_path",
-    "",
-    "Input Path"
-)
+dbutils.widgets.text("input_path", "", "Input Path")
 
 input_path = dbutils.widgets.get("input_path")
 
 
-dbutils.widgets.text(
-    "output_path",
-    "",
-    "Output Path"
-)
+dbutils.widgets.text("output_path", "", "Output Path")
 
 output_path = dbutils.widgets.get("output_path")
 
 # Section 2 - Ingestion
 
-df_raw = spark.read.csv(
-    input_path,
-    header=True,
-    inferSchema=True
-)
+df_raw = spark.read.csv(input_path, header=True, inferSchema=True)
 
 display(df_raw)
 
 # Section 3 - Data Quality
 from pyspark.sql.functions import col
 
-df_clean = df_raw.filter(
-    (col("quantity") > 0) & (col("price") > 0)
-)
+df_clean = df_raw.filter((col("quantity") > 0) & (col("price") > 0))
 
 print(df_clean.count())
 

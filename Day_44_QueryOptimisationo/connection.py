@@ -1,10 +1,7 @@
 import mysql.connector
 
 connection = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="admin",
-    database="day_39_widow_functions"
+    host="localhost", user="root", password="admin", database="day_39_widow_functions"
 )
 
 print("Connected successfully!")

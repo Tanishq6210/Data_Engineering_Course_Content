@@ -34,7 +34,7 @@ print(name.strip().title())
 
 
 # Searching and Replacing
-#Method 1 - find() - This is used to find the index of the word being searched inside the string
+# Method 1 - find() - This is used to find the index of the word being searched inside the string
 
 if name.strip().lower().find("manav") == -1:
     print("not found!")
@@ -51,15 +51,15 @@ print(count_of_manav)
 
 
 name = "    T a n i s h q T y a g i    "
-print(name.lower().strip().replace(" ",""))
+print(name.lower().strip().replace(" ", ""))
 
 # Method 4 - startsWith() - If the given string starts with the other string to be checked
 
-if name.lower().replace(" ","").startswith("Tan".lower()):
+if name.lower().replace(" ", "").startswith("Tan".lower()):
     print("Yes! name starts with Tan!")
 else:
-    print("No, name does not starts with Tan!")    
-    
+    print("No, name does not starts with Tan!")
+
 # Method 5 - endsWith()
 email_id = "tanishq@gmail.com"
 if email_id.endswith(".com") and email_id.find("@") != -1:
@@ -84,7 +84,6 @@ num_list = [1, 2, 3]
 sentence = "i am not so awesome."
 print(sentence.capitalize())
 print(sentence.title())
-
 
 
 sentence = "Tanishq"

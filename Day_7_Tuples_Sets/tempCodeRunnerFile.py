@@ -1,1 +1,1 @@
-numbers_single = (1)
+numbers_single = 1

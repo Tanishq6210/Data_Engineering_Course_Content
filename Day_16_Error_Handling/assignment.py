@@ -11,12 +11,6 @@
 # Task6 : Uses try-except-else-finally.
 
 
-
-
-
-
-
-
 # Assignment 2
 # Bank Withdrawal Validator
 

@@ -21,15 +21,11 @@ from delta import configure_spark_with_delta_pip
 from delta.tables import DeltaTable
 
 builder = (
-    SparkSession.builder
-    .appName("Class13B")
-    .config(
-        "spark.sql.extensions",
-        "io.delta.sql.DeltaSparkSessionExtension"
-    )
+    SparkSession.builder.appName("Class13B")
+    .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
     .config(
         "spark.sql.catalog.spark_catalog",
-        "org.apache.spark.sql.delta.catalog.DeltaCatalog"
+        "org.apache.spark.sql.delta.catalog.DeltaCatalog",
     )
 )
 
@@ -45,23 +41,15 @@ print("Delta Lake configured successfully!")
 
 path = "/content/customer_delta"
 
-columns = [
-    "customer_id",
-    "name",
-    "city",
-    "phone"
-]
+columns = ["customer_id", "name", "city", "phone"]
 
 initial_data = [
     (101, "Tanishq", "Bangalore", "9999999999"),
     (102, "Rahul", "Delhi", "8888888888"),
-    (103, "Ankit", "Mumbai", "7777777777")
+    (103, "Ankit", "Mumbai", "7777777777"),
 ]
 
-initial_df = spark.createDataFrame(
-    initial_data,
-    columns
-)
+initial_df = spark.createDataFrame(initial_data, columns)
 
 print("\nInitial Customer Data:")
 initial_df.show()
@@ -71,15 +59,9 @@ initial_df.show()
 # 4. CREATE INITIAL DELTA TABLE
 # ============================================================
 
-initial_df.write \
-    .format("delta") \
-    .mode("overwrite") \
-    .save(path)
+initial_df.write.format("delta").mode("overwrite").save(path)
 
-customer_delta = DeltaTable.forPath(
-    spark,
-    path
-)
+customer_delta = DeltaTable.forPath(spark, path)
 
 print("Initial Delta Table:")
 customer_delta.toDF().show()
@@ -94,13 +76,10 @@ customer_delta.toDF().show()
 
 incremental_data = [
     (101, "Tanishq", "Hyderabad", "9999999999"),
-    (104, "Priya", "Chennai", "6666666666")
+    (104, "Priya", "Chennai", "6666666666"),
 ]
 
-incremental_df = spark.createDataFrame(
-    incremental_data,
-    columns
-)
+incremental_df = spark.createDataFrame(incremental_data, columns)
 
 print("\nIncremental Data:")
 incremental_df.show()
@@ -112,23 +91,16 @@ incremental_df.show()
 
 (
     customer_delta.alias("target")
-    .merge(
-        incremental_df.alias("source"),
-        "target.customer_id = source.customer_id"
-    )
+    .merge(incremental_df.alias("source"), "target.customer_id = source.customer_id")
     .whenMatchedUpdate(
-        set={
-            "name": "source.name",
-            "city": "source.city",
-            "phone": "source.phone"
-        }
+        set={"name": "source.name", "city": "source.city", "phone": "source.phone"}
     )
     .whenNotMatchedInsert(
         values={
             "customer_id": "source.customer_id",
             "name": "source.name",
             "city": "source.city",
-            "phone": "source.phone"
+            "phone": "source.phone",
         }
     )
     .execute()
@@ -146,11 +118,7 @@ print("\nDelta Table History:")
 
 history = customer_delta.history()
 
-history.select(
-    "version",
-    "timestamp",
-    "operation"
-).show(truncate=False)
+history.select("version", "timestamp", "operation").show(truncate=False)
 
 
 # ============================================================
@@ -159,10 +127,7 @@ history.select(
 # ============================================================
 
 current_version = (
-    history
-    .select("version")
-    .orderBy("version", ascending=False)
-    .first()["version"]
+    history.select("version").orderBy("version", ascending=False).first()["version"]
 )
 
 previous_version = current_version - 1
@@ -170,12 +135,7 @@ previous_version = current_version - 1
 print("Current Version:", current_version)
 print("Reading Previous Version:", previous_version)
 
-old_df = (
-    spark.read
-    .format("delta")
-    .option("versionAsOf", previous_version)
-    .load(path)
-)
+old_df = spark.read.format("delta").option("versionAsOf", previous_version).load(path)
 
 print("\nData Before MERGE:")
 old_df.show()
@@ -185,9 +145,7 @@ old_df.show()
 # 9. SIMULATE ACCIDENTAL DELETE
 # ============================================================
 
-customer_delta.delete(
-    "customer_id = 103"
-)
+customer_delta.delete("customer_id = 103")
 
 print("\nAfter Accidental DELETE:")
 customer_delta.toDF().show()
@@ -200,10 +158,7 @@ customer_delta.toDF().show()
 history = customer_delta.history()
 
 delete_version = (
-    history
-    .select("version")
-    .orderBy("version", ascending=False)
-    .first()["version"]
+    history.select("version").orderBy("version", ascending=False).first()["version"]
 )
 
 version_before_delete = delete_version - 1
@@ -212,10 +167,7 @@ print("Delete Version:", delete_version)
 print("Version Before Delete:", version_before_delete)
 
 before_delete_df = (
-    spark.read
-    .format("delta")
-    .option("versionAsOf", version_before_delete)
-    .load(path)
+    spark.read.format("delta").option("versionAsOf", version_before_delete).load(path)
 )
 
 print("\nData Before DELETE:")
@@ -226,9 +178,7 @@ before_delete_df.show()
 # 11. RESTORE PREVIOUS VERSION
 # ============================================================
 
-customer_delta.restoreToVersion(
-    version_before_delete
-)
+customer_delta.restoreToVersion(version_before_delete)
 
 print("\nAfter RESTORE:")
 customer_delta.toDF().show()
@@ -240,13 +190,9 @@ customer_delta.toDF().show()
 
 print("\nFinal Delta Table History:")
 
-customer_delta.history() \
-    .select(
-        "version",
-        "timestamp",
-        "operation"
-    ) \
-    .show(truncate=False)
+customer_delta.history().select("version", "timestamp", "operation").show(
+    truncate=False
+)
 
 
 # ============================================================

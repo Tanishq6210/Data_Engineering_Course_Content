@@ -3,7 +3,7 @@ transactions = [
     {"category": "Electronics", "amount": 2200},
     {"category": "Books", "amount": 300},
     {"category": "Groceries", "amount": 900},
-    {"category": "Electronics", "amount": 1800}
+    {"category": "Electronics", "amount": 1800},
 ]
 
 total_amount = 0
@@ -14,4 +14,4 @@ for transaction in transactions:
     print(transaction)
 
 
-print(f'Average amount: {total_amount / len(transactions)}')
+print(f"Average amount: {total_amount / len(transactions)}")

@@ -7,6 +7,7 @@
 # Add Exception Handling
 # Create Logging Decorator
 
+
 # Student Management System
 # Student class -> To store individual student details
 # Student Manager class -> To store all the students list at one place
@@ -14,20 +15,22 @@
 def logger(func):
     def wrapper(*args, **kwargs):
         print(f"Starting {func.__name__}")
-        
+
         result = func(*args, **kwargs)
 
         print(f"Finished {func.__name__}")
 
         return result
+
     return wrapper
+
 
 class Student:
 
     def __init__(self, name, roll_no, marks):
         if not name:
             raise ValueError("Name cannot be empty!")
-        
+
         self.name = name
         self.roll_no = roll_no
         self.marks = marks
@@ -41,12 +44,13 @@ class Student:
             return "C"
         else:
             return "D"
-        
+
     def display_details(self):
         print(f"Name: {self.name}")
         print(f"Roll no: {self.roll_no}")
         print(f"Marks: {self.marks}")
         print(f"Grade: {self.calculate_grade()}")
+
 
 class StudentManager:
     def __init__(self):
@@ -57,9 +61,8 @@ class StudentManager:
         # Validation to prevent duplicates
         for existing_student in self.students:
             if existing_student.roll_no == student.roll_no:
-                print(f'Roll number : {student.roll_no} already exists!')
-                raise ValueError(f'Roll number already exists!')
-            
+                print(f"Roll number : {student.roll_no} already exists!")
+                raise ValueError(f"Roll number already exists!")
 
         self.students.append(student)
 
@@ -72,24 +75,24 @@ class StudentManager:
                 self.students.remove(student)
 
                 print(f"Student removed with roll_no: {roll_no}")
-                
+
                 return
-        
+
         print(f"Student with roll no : {roll_no} not found!")
 
     def search_student(self, roll_no):
         for student in self.students:
-            
+
             if student.roll_no == roll_no:
                 return student
-            
+
         return None
 
     def display_students(self):
         print("Displaying all students below -> ")
         for student in self.students:
             student.display_details()
-            print("-"*10)
+            print("-" * 10)
 
 
 gdg_manager = StudentManager()
@@ -113,12 +116,11 @@ gdg_manager.remove_student(2)
 
 student = gdg_manager.search_student(2)
 # if student == None:
-    # print("Student not found!")
+# print("Student not found!")
 # else:
-    # student.display_details()
+# student.display_details()
 
 # gdg_manager.display_students()
-
 
 
 # Decorators
@@ -134,9 +136,11 @@ def decorator_function(func):
 
     return wrapper
 
+
 @decorator_function
 def greet():
     print("Hello!")
+
 
 # greet = decorator_function(greet)
 

@@ -3,11 +3,7 @@ import json
 # JSON -> Java script object notation
 
 # swiggy_account
-{
-    "name": "Rohan",
-    "email": "rohan.gandhi@gmail.com",
-    "city": "Delhi"
-}
+{"name": "Rohan", "email": "rohan.gandhi@gmail.com", "city": "Delhi"}
 
 # Why is JSON so popular?
 # 1. Human readable
@@ -23,14 +19,13 @@ import json
 #     (1, 2): "Hey"
 # }
 
-# # Serialization - Converting a python object to JSON [Packing data] 
+# # Serialization - Converting a python object to JSON [Packing data]
 # student =  {
 #     "name": "Moksh",
 #     "marks": 99
 # }
 
 # # Deserialization - Converting a JSON to a python object [Unpacking data]
-
 
 
 # # Part 3 -> Working with JSON in Python
@@ -73,4 +68,6 @@ print(f'Salary of {data["employees"][1]["name"]} is {data["employees"][1]["salar
 with open("cleartrip_data.json", "r") as cleartrip_file:
     cleartrip_data = json.load(cleartrip_file)
 
-print(cleartrip_data["filterData"]["onwardLeg"]["nearbyAirportFilter"][0]["airportCode"])
+print(
+    cleartrip_data["filterData"]["onwardLeg"]["nearbyAirportFilter"][0]["airportCode"]
+)

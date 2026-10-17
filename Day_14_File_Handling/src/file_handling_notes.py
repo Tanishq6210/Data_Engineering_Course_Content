@@ -26,12 +26,13 @@ import csv
 content = ""
 
 # Extraction
-with open("../data/input/data.txt", "r") as file: #It will automatically call, .close() function
+with open(
+    "../data/input/data.txt", "r"
+) as file:  # It will automatically call, .close() function
     content = file.readline()
     print(content)
     content = file.readline()
     print(content)
-
 
 
 # no_of_words = len(content.split(" "))
@@ -52,29 +53,32 @@ with open("../data/input/data.txt", "r") as file: #It will automatically call, .
 
 filtered_students = [["marks", "name", "id"]]
 # Open a csv file
-with open("../data/input/students.csv", "r") as in_file, open("../data/output/csv_output.csv", "w", newline="") as out_file:
+with open("../data/input/students.csv", "r") as in_file, open(
+    "../data/output/csv_output.csv", "w", newline=""
+) as out_file:
     reader = csv.reader(in_file)
-    next(reader) #It skips the first row (header).
+    next(reader)  # It skips the first row (header).
 
     for row in reader:
         if int(row[2]) > 50:
             filtered_students.append(row)
 
-
     # print(filtered_students)
 
     writer = csv.writer(out_file)
 
-    writer.writerows(filtered_students) # Write all the rows at once
+    writer.writerows(filtered_students)  # Write all the rows at once
 
 
-with open("../data/input/students.csv", "r") as file, open("../data/output/filtered_students.csv", "w", newline = "") as filtered_file:
+with open("../data/input/students.csv", "r") as file, open(
+    "../data/output/filtered_students.csv", "w", newline=""
+) as filtered_file:
     fieldnames = ["name", "marks", "roll_no"]
     reader = csv.DictReader(file)
-    writer = csv.DictWriter(filtered_file, fieldnames = fieldnames)
-    
+    writer = csv.DictWriter(filtered_file, fieldnames=fieldnames)
+
     writer.writeheader()
-    
+
     for row in reader:
         if int(row["marks"]) > 50:
             writer.writerow(row)

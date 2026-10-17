@@ -1,0 +1,37 @@
+
+name: Build Notes Docker Image
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Day_72_Docker/notes.py'
+      - 'Day_72_Docker/Dockerfile'
+      - '.github/workflows/docker-notes.yml'
+
+      
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'Day_72_Docker/notes.py'
+      - 'Day_72_Docker/Dockerfile'
+      - '.github/workflows/docker-notes.yml'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -t notes-app:latest ./Day_72_Docker
+
+      - name: Test Docker container
+        run: docker run --rm notes-app:latest

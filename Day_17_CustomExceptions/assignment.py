@@ -20,15 +20,6 @@
 # Display rejected records with reason - WARN - Logging
 
 
-
-
-
-
-
-
-
-
-
 # Homework Assignment
 # Employee Data Validation Pipeline
 

@@ -7,10 +7,7 @@ os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import sum
 
-
-spark = SparkSession.builder \
-    .appName("Class7A_Join_Practical") \
-    .getOrCreate()
+spark = SparkSession.builder.appName("Class7A_Join_Practical").getOrCreate()
 
 
 # ============================================================
@@ -23,12 +20,11 @@ customers_data = [
     (3, "Amit", "Delhi"),
     (4, "Neha", "Hyderabad"),
     (5, "Arjun", "Pune"),
-    (6, "Sneha", "Chennai")
+    (6, "Sneha", "Chennai"),
 ]
 
 customers = spark.createDataFrame(
-    customers_data,
-    ["customer_id", "customer_name", "city"]
+    customers_data, ["customer_id", "customer_name", "city"]
 )
 
 c = customers.alias("c")
@@ -44,12 +40,11 @@ orders_data = [
     (104, 3, 1004, 1500),
     (105, 4, 1005, 4500),
     (106, 7, 1006, 2200),
-    (101, 1, 1001, 4000)
+    (101, 1, 1001, 4000),
 ]
 
 orders = spark.createDataFrame(
-    orders_data,
-    ["order_id", "customer_id", "product_id", "amount"]
+    orders_data, ["order_id", "customer_id", "product_id", "amount"]
 )
 
 o = orders.alias("o")
@@ -64,13 +59,10 @@ products_data = [
     (1003, "Keyboard"),
     (1004, "Monitor"),
     (1005, "Headphones"),
-    (1007, "Smartphone")
+    (1007, "Smartphone"),
 ]
 
-products = spark.createDataFrame(
-    products_data,
-    ["product_id", "product_name"]
-)
+products = spark.createDataFrame(products_data, ["product_id", "product_name"])
 
 p = products.alias("p")
 # ============================================================
@@ -87,8 +79,8 @@ p = products.alias("p")
 # products.show()
 
 # Join Syntax -> df1.join(df2, condition, how)
-# customer_order_inner_join_result = customers.join(orders, 
-#                                                   (customers.customer_id == orders.customer_id) & (orders.amount >= 2000), 
+# customer_order_inner_join_result = customers.join(orders,
+#                                                   (customers.customer_id == orders.customer_id) & (orders.amount >= 2000),
 #                                                   "inner"
 #                                                   )
 
@@ -106,30 +98,25 @@ p = products.alias("p")
 # order_customer_left_join_result = orders.join(customers, customers.customer_id == orders.customer_id, "left")
 # order_customer_left_join_result.show()
 
-customer_order_full_outer_join = customers.join(orders, customers.customer_id == orders.customer_id, "full")
+customer_order_full_outer_join = customers.join(
+    orders, customers.customer_id == orders.customer_id, "full"
+)
 
 customer_order_full_outer_join.show()
 
 # Join using alias
-c_o_full_outer_join = c.join(
-    o,
-    c.customer_id == o.customer_id,
-    "inner"
-)
+c_o_full_outer_join = c.join(o, c.customer_id == o.customer_id, "inner")
 co = c_o_full_outer_join.alias("co")
 # c_o_full_outer_join.show()
 
 
 # Duplicate columns
 
-c_o_full_outer_join = c.join(
-    o,
-    c.customer_id == o.customer_id,
-    "inner"
-).drop(c.customer_id)
+c_o_full_outer_join = c.join(o, c.customer_id == o.customer_id, "inner").drop(
+    c.customer_id
+)
 
 # c_o_full_outer_join.show()
-
 
 
 # Multiple Joins
@@ -140,12 +127,7 @@ c_o_full_outer_join = c.join(
 c_o_p_inner_join_single_statement = (
     c.join(o, c.customer_id == o.customer_id, "inner")
     .join(p, o.product_id == p.product_id, "inner")
-    .select(
-        c.customer_id,
-        c.customer_name,
-        o.order_id,
-        p.product_name
-    )
+    .select(c.customer_id, c.customer_name, o.order_id, p.product_name)
 )
 
 
@@ -169,27 +151,21 @@ c_o_p_inner_join_single_statement = (
 # ).show()
 
 # Usecase 2
-order_count = c.join(
-    o,
-    c.customer_id == o.customer_id,
-    "inner"
-).groupBy(
-    c.customer_id,
-    c.customer_name
-).count()
+order_count = (
+    c.join(o, c.customer_id == o.customer_id, "inner")
+    .groupBy(c.customer_id, c.customer_name)
+    .count()
+)
 
 
 # Usecase 3 answer
-product_sales = o.join(
-    p,
-    o.product_id == p.product_id,
-    "inner"
-).groupBy(
-    p.product_id,
-    p.product_name
-).agg(
-    sum(o.amount).alias("total_sales")
-).orderBy("total_sales", ascending = False).show()
+product_sales = (
+    o.join(p, o.product_id == p.product_id, "inner")
+    .groupBy(p.product_id, p.product_name)
+    .agg(sum(o.amount).alias("total_sales"))
+    .orderBy("total_sales", ascending=False)
+    .show()
+)
 
 # Syntax
-# Join -> Grouping -> Aggregation -> OrderBy 
+# Join -> Grouping -> Aggregation -> OrderBy

@@ -3,13 +3,13 @@
 # Part 2 - Series vs DataFrame
 # Part 3 - Reading Data
 # Part 4 - Understanding Dataset Structure
-# Part 5 - Practical 
+# Part 5 - Practical
 
 
 # Flipkart - 50 million orders
-order_id = [1001,     1002,      1005]
-prices =   [500,      600,        700]
-cities =   ["Delhi", "Mumbai", "Pune"]
+order_id = [1001, 1002, 1005]
+prices = [500, 600, 700]
+cities = ["Delhi", "Mumbai", "Pune"]
 
 # Problems
 # 1. 3 different lists
@@ -29,17 +29,11 @@ cities =   ["Delhi", "Mumbai", "Pune"]
 import pandas as pd
 import numpy as np
 
-arr = np.array([
-    [101, 500],
-    [102, 700]
-])
+arr = np.array([[101, 500], [102, 700]])
 
 # It helps in adding labels to the columns
 
-df = pd.DataFrame({
-    "OrderId": [101, 102],
-    "Price":[500, 700]
-})
+df = pd.DataFrame({"OrderId": [101, 102], "Price": [500, 700]})
 
 # numpy -> A warehouse full of numbered boxes
 # pandas -> A warehouse with labeled boxes
@@ -52,8 +46,7 @@ print(students)
 
 # Flexibility -> You can give your custom index to each value
 students = pd.Series(
-    ["Vibhore", "Aditi", "Manav"],
-    index = ["EMP101", "EMP102", "EMP103"]
+    ["Vibhore", "Aditi", "Manav"], index=["EMP101", "EMP102", "EMP103"]
 )
 
 print(students)
@@ -61,11 +54,13 @@ print(students["EMP103"])
 
 # Dataframe -> A dataframe is a two-dimensional labeled table
 
-df = pd.DataFrame({
-    "ID": [1, 2], #series
-    "Name": ["Sachi", "Ayush"], #series
-    "Age": [21, 22] #series
-})
+df = pd.DataFrame(
+    {
+        "ID": [1, 2],  # series
+        "Name": ["Sachi", "Ayush"],  # series
+        "Age": [21, 22],  # series
+    }
+)
 
 # Reading data -> CSV, Excel, Json
 df = pd.read_csv("data/students.csv")
@@ -89,22 +84,20 @@ df = pd.read_json("data/student.json")
 # Summary Statistics
 print(df[["Age", "Marks"]].describe())
 
+
 def data_range(column):
     return column.max() - column.min()
+
 
 df.agg(["mean", "std", data_range])
 
 
-df.describe(percentiles = [0.10, 0.50, 0.80])
-
+df.describe(percentiles=[0.10, 0.50, 0.80])
 
 
 import pandas as pd
 
-data = {
-    "Name": ["Alice", "Bob", "Charlie"],
-    "Age": [25, 30, 28]
-}
+data = {"Name": ["Alice", "Bob", "Charlie"], "Age": [25, 30, 28]}
 
 df = pd.DataFrame(data, index=["A", "B", "C"])
 print(df)

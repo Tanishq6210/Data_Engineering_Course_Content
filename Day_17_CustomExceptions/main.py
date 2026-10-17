@@ -1,7 +1,7 @@
 import logging
 from datetime import date
 
-log_format = '%(asctime)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(message)s'
+log_format = "%(asctime)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(message)s"
 
 today = str(date.today())
 # Syntax for using logging
@@ -9,8 +9,8 @@ logging.basicConfig(
     filename=f"{today}_main_app.log",
     level=logging.INFO,
     format=log_format,
-    datefmt='%Y-%m-%d %H:%M:%S',
-    force=True #For Collab
+    datefmt="%Y-%m-%d %H:%M:%S",
+    force=True,  # For Collab
 )
 
 logging.warn("Application Started!")
@@ -24,9 +24,11 @@ student_mark = -1000000
 
 # Error -> ValueError, TypeError, FileNotFoundError
 
+
 # Custom Exception Classes
 class InvalidAmountError(Exception):
     pass
+
 
 class InvalidMarkError(Exception):
     pass
@@ -44,12 +46,10 @@ logging.info("Doing divide by 0 operation")
 dividend = 0
 try:
     dividend = int(input("Enter dividend: "))
-    result =  10 / dividend
+    result = 10 / dividend
 except ZeroDivisionError:
     print(f"Division by 0 error, when divided with {dividend}")
-    logging.error(
-        f"Division by 0 occuered! {dividend}"
-    )
+    logging.error(f"Division by 0 occuered! {dividend}")
 logging.info("Completed divide by 0 operation")
 
 # Logging Vs Printing

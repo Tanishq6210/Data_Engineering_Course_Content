@@ -41,19 +41,19 @@ arr = np.array([10, 20, 30, 40, 50])
 print(type(arr))
 # ndarray -> N-Dimensional Array
 
-arr_dim = np.array([[10,20,30],[40,50,60]])
+arr_dim = np.array([[10, 20, 30], [40, 50, 60]])
 
 
-print(arr_dim.shape) #no.of rows x no. of columns
-print(arr_dim.ndim) #no. of dimension
-print(arr_dim.size) 
+print(arr_dim.shape)  # no.of rows x no. of columns
+print(arr_dim.ndim)  # no. of dimension
+print(arr_dim.size)
 print(arr_dim.dtype)
 
 # How to create arrays
-#1. By giving list as input
-#2. ones
-#3. zeroes
-#4. arrange
+# 1. By giving list as input
+# 2. ones
+# 3. zeroes
+# 4. arrange
 
 array = np.arange(10)
 array = np.arange(2, 10, 2)
